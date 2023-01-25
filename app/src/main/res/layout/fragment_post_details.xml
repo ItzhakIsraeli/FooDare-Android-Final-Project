@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostDetailsFragment">
+
+    <TextView
+        android:id="@+id/post_details_description_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:minHeight="48dp"
+        android:text="The Burger was great! but the bread was too dry. We will definitely come back again !"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/post_details_back_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/post_details_description_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/post_details_rate_tv"
+        app:layout_constraintVertical_bias="0.612"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/post_details_back_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/orange_button"
+        android:text="BACK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/edit_profile_avatar"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hamburger" />
+
+    <TextView
+        android:id="@+id/post_details_restaurant_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Resturant:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_avatar" />
+
+    <EditText
+        android:id="@+id/post_details_meal_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Cheeseburger"
+        app:layout_constraintBaseline_toBaselineOf="@+id/post_details_meal_title_tv"
+        app:layout_constraintStart_toStartOf="@+id/post_details_restaurant_tv"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/post_details_rate_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        android:text="7.5"
+        app:layout_constraintBaseline_toBaselineOf="@+id/post_details_rate_title_tv"
+        app:layout_constraintStart_toStartOf="@+id/post_details_meal_tv"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/post_details_rate_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Rate:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/post_details_meal_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/post_details_meal_title_tv" />
+
+    <EditText
+        android:id="@+id/post_details_restaurant_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="Prozdor"
+        app:layout_constraintBaseline_toBaselineOf="@+id/post_details_restaurant_title_tv"
+        app:layout_constraintStart_toEndOf="@+id/post_details_restaurant_title_tv"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/post_details_meal_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Meal:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/post_details_restaurant_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/post_details_restaurant_title_tv"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/post_details_description_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Description:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/post_details_rate_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/post_details_rate_title_tv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/postsListFragment">
+    <fragment
+        android:id="@+id/postsListFragment"
+        android:name="com.example.foodare.PostsListFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/posts_fragment_list" >
+        <action
+            android:id="@+id/action_postsListFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPostFragment"
+        android:name="com.example.foodare.AddPostFragment"
+        android:label="@string/upload_bar"
+        tools:layout="@layout/fragment_add_post" />
+    <fragment
+        android:id="@+id/postDetailsFragment"
+        android:name="com.example.foodare.PostDetailsFragment"
+        android:label="@string/post_details_bar"
+        tools:layout="@layout/fragment_post_details" >
+        <argument
+            android:name="restaurant"
+            app:argType="string" />
+        <argument
+            android:name="meal"
+            app:argType="string" />
+        <argument
+            android:name="rate"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="username"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.example.foodare.UserProfileFragment"
+        android:label="@string/profile_bar"
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_userProfileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.foodare.EditProfileFragment"
+        android:label="@string/edit_profile_bar"
+        tools:layout="@layout/fragment_edit_profile" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="age"
+            app:argType="string" />
+        <argument
+            android:name="phone"
+            app:argType="string" />
+        <argument
+            android:name="mail"
+            app:argType="string" />
+    </fragment>
+    <action android:id="@+id/action_global_addPostFragment" app:destination="@id/addPostFragment" /><action android:id="@+id/action_global_userProfileFragment" app:destination="@id/userProfileFragment"/>
+</navigation>

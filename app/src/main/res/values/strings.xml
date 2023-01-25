@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FooDare</string>
+    <string name="home_bar">HOME</string>
+    <string name="upload_bar">UPLOAD</string>
+    <string name="my_posts_bar">MY POSTS</string>
+    <string name="profile_bar">PROFILE</string>
+    <string name="edit_profile_bar">EDIT PROFILE</string>
+    <string name="post_details_bar">POST DETAILS</string>
 </resources>

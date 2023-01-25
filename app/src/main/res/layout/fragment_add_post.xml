@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddPostFragment">
+
+    <Button
+        android:id="@+id/add_post_cancel_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/orange_button"
+        android:text="CANCEL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/add_post_upload_btn" />
+
+    <ImageView
+        android:id="@+id/add_post_avatar_image"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="92dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_image_search_24" />
+
+    <EditText
+        android:id="@+id/add_post_restaurant_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:ems="10"
+        android:hint="Vitrina"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/add_post_restaurant_tv"
+        app:layout_constraintStart_toEndOf="@+id/add_post_restaurant_tv"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/add_post_rate_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Rate:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/add_post_meal_tv"
+        app:layout_constraintTop_toBottomOf="@+id/add_post_meal_tv" />
+
+    <TextView
+        android:id="@+id/add_post_meal_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Meal:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/add_post_restaurant_tv"
+        app:layout_constraintTop_toBottomOf="@+id/add_post_restaurant_tv"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/add_post_rate_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="8.5"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/add_post_rate_tv"
+        app:layout_constraintStart_toStartOf="@+id/add_post_meal_et"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/add_post_meal_et"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="GreatBurger"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/add_post_meal_tv"
+        app:layout_constraintStart_toStartOf="@+id/add_post_restaurant_et"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/add_post_restaurant_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:text="Restaurant:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_post_avatar_image" />
+
+    <ImageView
+        android:id="@+id/add_post_user_avatar"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/userimage" />
+
+    <Button
+        android:id="@+id/add_post_upload_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/orange_button"
+        android:text="UPLOAD"
+        app:layout_constraintBaseline_toBaselineOf="@+id/add_post_cancel_btn"
+        app:layout_constraintEnd_toStartOf="@+id/add_post_cancel_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/add_post_upload_description_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="New meal worth daring for:"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toEndOf="@+id/add_post_user_avatar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

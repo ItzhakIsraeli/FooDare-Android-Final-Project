@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserProfileFragment">
+
+    <TextView
+        android:id="@+id/user_profile_mail_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Izik1747@gmail.com"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/user_profile_mail_title_tv"
+        app:layout_constraintStart_toStartOf="@+id/user_profile_phone_tv" />
+
+    <TextView
+        android:id="@+id/user_profile_phone_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0545242473"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/user_profile_phone_title_tv"
+        app:layout_constraintStart_toStartOf="@+id/user_profile_age_tv" />
+
+    <TextView
+        android:id="@+id/user_profile_age_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="24"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_profile_age_title_tv"
+        app:layout_constraintStart_toStartOf="@+id/user_profile_name_tv" />
+
+    <TextView
+        android:id="@+id/user_profile_mail_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:text="Mail:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_profile_phone_title_tv" />
+
+    <TextView
+        android:id="@+id/user_profile_age_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:text="Age:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_profile_name_title_tv"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/user_profile_avatar"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/userimage" />
+
+    <TextView
+        android:id="@+id/user_profile_name_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:text="Name:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_profile_avatar" />
+
+    <Button
+        android:id="@+id/user_profile_edit_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/orange_button"
+        android:text="EDIT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/user_profile_phone_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:text="Phone:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_profile_age_title_tv" />
+
+    <TextView
+        android:id="@+id/user_profile_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Itzhak Isreali"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/user_profile_name_title_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.348"
+        app:layout_constraintStart_toEndOf="@+id/user_profile_name_title_tv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
