@@ -3,6 +3,7 @@ package com.example.foodare;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,14 @@ public class AddPostFragment extends Fragment {
         EditText mealRateEt = view.findViewById(R.id.add_post_rate_et);
         Button uploadBtn = view.findViewById(R.id.add_post_upload_btn);
         Button cancelBtn = view.findViewById(R.id.add_post_cancel_btn);
+
+        uploadBtn.setOnClickListener(uploadBtnView -> {
+            // TODO: add upload to DB
+        });
+
+        cancelBtn.setOnClickListener(cancelBtnView -> {
+            Navigation.findNavController(cancelBtnView).popBackStack();
+        });
 
         uploadBtn.setOnClickListener(view1 -> {
             String restaurant = restaurantNameEt.getText().toString();
