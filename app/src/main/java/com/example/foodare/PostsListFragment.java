@@ -48,7 +48,7 @@ public class PostsListFragment extends Fragment {
         adapter.setOnItemClickListener(position -> {
             Log.d("TAG", "Row was clicked " + position);
             Post post = data.get(position);
-            PostsListFragmentDirections.ActionPostsListFragmentToPostDetailsFragment action = PostsListFragmentDirections.actionPostsListFragmentToPostDetailsFragment(post.restaurant, post.meal, post.rate, post.description, post.username);
+            PostsListFragmentDirections.ActionPostsListFragmentToPostDetailsFragment action = PostsListFragmentDirections.actionPostsListFragmentToPostDetailsFragment(post.restaurant, post.meal, post.rate, post.description, post.username, post.imageUrl);
             Navigation.findNavController(view).navigate((NavDirections) action);
         });
         return view;

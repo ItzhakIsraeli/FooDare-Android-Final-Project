@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodare.model.Post;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -24,6 +26,9 @@ class PostViewHolder extends RecyclerView.ViewHolder {
     TextView mealDescription;
     List<Post> data;
     Button editBtn;
+    ImageView mealImage;
+    String url = "";
+
 
     public PostViewHolder(@NonNull View itemView, PostRecyclerAdapter.OnItemClickListener listener, List<Post> data) {
         super(itemView);
@@ -32,12 +37,16 @@ class PostViewHolder extends RecyclerView.ViewHolder {
         restaurantName = itemView.findViewById(R.id.post_list_row_restaurant_tv);
         mealName = itemView.findViewById(R.id.post_list_row_meal_tv);
         mealRate = itemView.findViewById(R.id.post_list_row_rate_tv);
+        //TODO: fix this to description
         mealDescription = itemView.findViewById(R.id.post_list_row_rate_tv);
         editBtn = itemView.findViewById(R.id.post_list_row_edit_btn);
+        mealImage = itemView.findViewById(R.id.postlistrow_avatar_img);
 
         if (editBtn != null) {
             editBtn.setOnClickListener(view -> {
-                MyPostListFragmentDirections.ActionMyPostListFragmentToEditPostFragment action = MyPostListFragmentDirections.actionMyPostListFragmentToEditPostFragment(restaurantName.getText().toString(), mealName.getText().toString(), mealRate.getText().toString(), mealDescription.getText().toString());
+                MyPostListFragmentDirections.ActionMyPostListFragmentToEditPostFragment action =
+                        MyPostListFragmentDirections.actionMyPostListFragmentToEditPostFragment(restaurantName.getText().toString(),
+                                mealName.getText().toString(), mealRate.getText().toString(), mealDescription.getText().toString(), url);
                 Navigation.findNavController(view).navigate((NavDirections) action);
             });
         }
@@ -56,11 +65,12 @@ class PostViewHolder extends RecyclerView.ViewHolder {
         restaurantName.setText(post.restaurant);
         mealName.setText(post.meal);
         mealRate.setText(post.rate);
-//        if (post.getAvatarUrl() != "") {
-//            Picasso.get().load(post.getAvatarUrl()).placeholder(R.drawable.avatar).into(avatarImage);
-//        } else {
-//            avatarImage.setImageResource(R.drawable.avatar);
-//        }
+        url=post.getImageUrl();
+        if (post.getImageUrl() != "") {
+            Picasso.get().load(post.getImageUrl()).placeholder(R.drawable.hamburger).into(mealImage);
+        } else {
+            mealImage.setImageResource(R.drawable.hamburger);
+        }
     }
 }
 

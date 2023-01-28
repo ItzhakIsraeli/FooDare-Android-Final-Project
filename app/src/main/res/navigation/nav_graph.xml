@@ -38,6 +38,9 @@
         <argument
             android:name="username"
             app:argType="string" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
@@ -100,6 +103,9 @@
             app:argType="string" />
         <argument
             android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="imageUrl"
             app:argType="string" />
     </fragment>
 </navigation>

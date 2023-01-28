@@ -1,5 +1,6 @@
 package com.example.foodare.model;
 
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -67,4 +68,13 @@ public class Model {
 
         firebaseModel.addPost(post, listener);
     }
+
+    public interface UploadImageListener {
+        void onComplete(String url);
+    }
+
+    public void uploadImage(String name, Bitmap bitmap, UploadImageListener listener) {
+        firebaseModel.uploadImage(name, bitmap, listener);
+    }
+
 }

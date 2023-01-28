@@ -33,7 +33,10 @@
                 android:id="@+id/add_post_avatar_image"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
-                android:layout_marginTop="92dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="88dp"
+                android:layout_marginEnd="100dp"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -176,6 +179,28 @@
                 app:layout_constraintHorizontal_bias="0.225"
                 app:layout_constraintStart_toEndOf="@+id/add_post_user_avatar"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/add_post_camera_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="132dp"
+                android:src="@drawable/ic_baseline_camera_alt_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.403"
+                app:layout_constraintStart_toEndOf="@+id/add_post_avatar_image"
+                app:layout_constraintTop_toBottomOf="@+id/add_post_upload_description_tv" />
+
+            <ImageButton
+                android:id="@+id/add_post_gallery_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_image_search_small"
+                app:layout_constraintBottom_toTopOf="@+id/add_post_camera_btn"
+                app:layout_constraintEnd_toEndOf="@+id/add_post_camera_btn"
+                app:layout_constraintTop_toBottomOf="@+id/add_post_upload_description_tv"
+                app:layout_constraintVertical_bias="0.888" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

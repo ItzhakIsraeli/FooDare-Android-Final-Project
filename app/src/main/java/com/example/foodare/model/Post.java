@@ -23,19 +23,21 @@ public class Post {
     public String meal = "";
     public String rate = "";
     public String description = "";
+    public String imageUrl = "";
     public Long lastUpdated;
 
     public Post() {
 
     }
 
-    public Post(@androidx.annotation.NonNull String id, String username, String restaurant, String meal, String rate, String description) {
+    public Post(@androidx.annotation.NonNull String id, String username, String restaurant, String meal, String rate, String description, String imageUrl) {
         this.id = id;
         this.username = username;
         this.restaurant = restaurant;
         this.meal = meal;
         this.rate = rate;
         this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     static final String COLLECTION = "posts";
@@ -46,6 +48,7 @@ public class Post {
     static final String RATE = "rate";
     static final String DESCRIPTION = "description";
     static final String LAST_UPDATED = "lastUpdated";
+    static final String IMAGE_URL = "imageUrl";
 
     public static Post fromJson(Map<String, Object> json) {
         String id = (String) json.get(ID);
@@ -54,8 +57,9 @@ public class Post {
         String meal = (String) json.get(MEAL);
         String rate = (String) json.get(RATE);
         String description = (String) json.get(DESCRIPTION);
+        String imageUrl = (String) json.get(IMAGE_URL);
 
-        Post post = new Post(id, username, restaurant, meal, rate, description);
+        Post post = new Post(id, username, restaurant, meal, rate, description, imageUrl);
         try {
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
             post.setLastUpdated(time.getSeconds());
@@ -65,7 +69,7 @@ public class Post {
         return post;
     }
 
-    public Map<String,Object> toJson(){
+    public Map<String, Object> toJson() {
         Map<String, Object> json = new HashMap<>();
         json.put(ID, getId());
         json.put(USERNAME, getUsername());
@@ -73,6 +77,7 @@ public class Post {
         json.put(MEAL, getMeal());
         json.put(RATE, getRate());
         json.put(DESCRIPTION, getDescription());
+        json.put(IMAGE_URL, getImageUrl());
         json.put(LAST_UPDATED, FieldValue.serverTimestamp());
         return json;
     }
@@ -132,5 +137,13 @@ public class Post {
 
     public void setLastUpdated(Long lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
