@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostDetailsFragment">
+    tools:context=".EditPostFragment">
 
-    <TextView
-        android:id="@+id/post_details_description_tv"
+    <EditText
+        android:id="@+id/edit_post_description_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -16,26 +16,61 @@
         android:minHeight="48dp"
         android:text="The Burger was great! but the bread was too dry. We will definitely come back again !"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/post_details_back_btn"
+        app:layout_constraintBottom_toTopOf="@+id/edit_post_cancel_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/post_details_description_title_tv"
-        app:layout_constraintTop_toBottomOf="@+id/post_details_description_title_tv"
+        app:layout_constraintStart_toStartOf="@+id/edit_post_description_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/edit_post_description_title_tv"
         app:layout_constraintVertical_bias="0.612"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/post_details_back_btn"
+        android:id="@+id/edit_post_cancel_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/orange_button"
+        android:text="CANCEL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/edit_post_save_btn" />
+
+    <Button
+        android:id="@+id/edit_post_save_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="30dp"
         android:background="@drawable/orange_button"
-        android:text="BACK"
+        android:text="SAVE"
+        app:layout_constraintBaseline_toBaselineOf="@+id/edit_post_cancel_btn"
+        app:layout_constraintEnd_toStartOf="@+id/edit_post_cancel_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/edit_post_delete_btn"
+        android:layout_width="49dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="300dp"
+        android:drawableBottom="@drawable/ic_delete_post"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <Button
+        android:id="@+id/edit_post_edit_image_btn"
+        android:layout_width="49dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="60dp"
+        android:drawableBottom="@drawable/ic_edit_post_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021" />
 
     <ImageView
         android:id="@+id/edit_profile_avatar"
@@ -49,7 +84,7 @@
         app:srcCompat="@drawable/hamburger" />
 
     <TextView
-        android:id="@+id/post_details_restaurant_title_tv"
+        android:id="@+id/edit_post_restaurant_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -59,42 +94,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_profile_avatar" />
 
-    <TextView
-        android:id="@+id/post_details_meal_tv"
+    <EditText
+        android:id="@+id/edit_post_meal_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Cheeseburger"
-        app:layout_constraintBaseline_toBaselineOf="@+id/post_details_meal_title_tv"
-        app:layout_constraintStart_toStartOf="@+id/post_details_restaurant_tv"
+        app:layout_constraintBaseline_toBaselineOf="@+id/edit_post_meal_title_tv"
+        app:layout_constraintStart_toStartOf="@+id/edit_post_restaurant_et"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/post_details_rate_tv"
+    <EditText
+        android:id="@+id/edit_post_rate_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="phone"
         android:minHeight="48dp"
         android:text="7.5"
-        app:layout_constraintBaseline_toBaselineOf="@+id/post_details_rate_title_tv"
-        app:layout_constraintStart_toStartOf="@+id/post_details_meal_tv"
+        app:layout_constraintBaseline_toBaselineOf="@+id/edit_post_rate_title_tv"
+        app:layout_constraintStart_toStartOf="@+id/edit_post_meal_et"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/post_details_rate_title_tv"
+        android:id="@+id/edit_post_rate_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:text="Rate:"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/post_details_meal_title_tv"
-        app:layout_constraintTop_toBottomOf="@+id/post_details_meal_title_tv" />
+        app:layout_constraintStart_toStartOf="@+id/edit_post_meal_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/edit_post_meal_title_tv" />
 
-    <TextView
-        android:id="@+id/post_details_restaurant_tv"
+    <EditText
+        android:id="@+id/edit_post_restaurant_et"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -102,29 +137,29 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Prozdor"
-        app:layout_constraintBaseline_toBaselineOf="@+id/post_details_restaurant_title_tv"
-        app:layout_constraintStart_toEndOf="@+id/post_details_restaurant_title_tv"
+        app:layout_constraintBaseline_toBaselineOf="@+id/edit_post_restaurant_title_tv"
+        app:layout_constraintStart_toEndOf="@+id/edit_post_restaurant_title_tv"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/post_details_meal_title_tv"
+        android:id="@+id/edit_post_meal_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:text="Meal:"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/post_details_restaurant_title_tv"
-        app:layout_constraintTop_toBottomOf="@+id/post_details_restaurant_title_tv"
+        app:layout_constraintStart_toStartOf="@+id/edit_post_restaurant_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/edit_post_restaurant_title_tv"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/post_details_description_title_tv"
+        android:id="@+id/edit_post_description_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:text="Description:"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/post_details_rate_title_tv"
-        app:layout_constraintTop_toBottomOf="@+id/post_details_rate_title_tv" />
+        app:layout_constraintStart_toStartOf="@+id/edit_post_rate_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/edit_post_rate_title_tv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,13 +3,15 @@ package com.example.foodare;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodare.model.Post;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -19,7 +21,9 @@ class PostViewHolder extends RecyclerView.ViewHolder {
     TextView restaurantName;
     TextView mealName;
     TextView mealRate;
+    TextView mealDescription;
     List<Post> data;
+    Button editBtn;
 
     public PostViewHolder(@NonNull View itemView, PostRecyclerAdapter.OnItemClickListener listener, List<Post> data) {
         super(itemView);
@@ -28,6 +32,15 @@ class PostViewHolder extends RecyclerView.ViewHolder {
         restaurantName = itemView.findViewById(R.id.post_list_row_restaurant_tv);
         mealName = itemView.findViewById(R.id.post_list_row_meal_tv);
         mealRate = itemView.findViewById(R.id.post_list_row_rate_tv);
+        mealDescription = itemView.findViewById(R.id.post_list_row_rate_tv);
+        editBtn = itemView.findViewById(R.id.post_list_row_edit_btn);
+
+        if (editBtn != null) {
+            editBtn.setOnClickListener(view -> {
+                MyPostListFragmentDirections.ActionMyPostListFragmentToEditPostFragment action = MyPostListFragmentDirections.actionMyPostListFragmentToEditPostFragment(restaurantName.getText().toString(), mealName.getText().toString(), mealRate.getText().toString(), mealDescription.getText().toString());
+                Navigation.findNavController(view).navigate((NavDirections) action);
+            });
+        }
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +65,7 @@ class PostViewHolder extends RecyclerView.ViewHolder {
 }
 
 public class PostRecyclerAdapter extends RecyclerView.Adapter<PostViewHolder> {
+    private final int rowLayout;
     OnItemClickListener listener;
 
     public static interface OnItemClickListener {
@@ -66,9 +80,10 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostViewHolder> {
         notifyDataSetChanged();
     }
 
-    public PostRecyclerAdapter(LayoutInflater inflater, List<Post> data) {
+    public PostRecyclerAdapter(LayoutInflater inflater, List<Post> data, int rowLayout) {
         this.inflater = inflater;
         this.data = data;
+        this.rowLayout = rowLayout;
     }
 
     void setOnItemClickListener(OnItemClickListener listener) {
@@ -78,7 +93,7 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostViewHolder> {
     @NonNull
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.post_list_row, parent, false);
+        View view = inflater.inflate(rowLayout, parent, false);
         return new PostViewHolder(view, listener, data);
     }
 

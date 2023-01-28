@@ -5,13 +5,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.foodare.databinding.MyPostsFragmentListBinding;
 import com.example.foodare.databinding.PostsFragmentListBinding;
 import com.example.foodare.model.Model;
 import com.example.foodare.model.Post;
@@ -19,36 +22,34 @@ import com.example.foodare.model.Post;
 import java.util.LinkedList;
 import java.util.List;
 
-public class PostsListFragment extends Fragment {
+public class MyPostListFragment extends Fragment {
+
     List<Post> data = new LinkedList<>();
     PostRecyclerAdapter adapter;
-    PostsFragmentListBinding binding;
+    MyPostsFragmentListBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-//        View view = inflater.inflate(R.layout.posts_fragment_list, container, false);
-
-        binding = PostsFragmentListBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
+//        View view = inflater.inflate(R.layout.my_posts_fragment_list, container, false);
 //        data = Model.instance().getAllPosts();
 
-//        reloadData();
+        binding = MyPostsFragmentListBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
-//        RecyclerView list = view.findViewById(R.id.posts_frag_list);
-        RecyclerView list = binding.postsFragList;
-
+        RecyclerView list = binding.myPostsFragList;
         list.setHasFixedSize(true);
 
         list.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new PostRecyclerAdapter(getLayoutInflater(), data, R.layout.post_list_row);
+        adapter = new PostRecyclerAdapter(getLayoutInflater(), data, R.layout.my_post_list_row);
         list.setAdapter(adapter);
+
+//        Button editBtn = view.findViewById(R.id.edit_profile_cancel_btn);
 
         adapter.setOnItemClickListener(position -> {
             Log.d("TAG", "Row was clicked " + position);
             Post post = data.get(position);
-            PostsListFragmentDirections.ActionPostsListFragmentToPostDetailsFragment action = PostsListFragmentDirections.actionPostsListFragmentToPostDetailsFragment(post.restaurant, post.meal, post.rate, post.description, post.username);
+            MyPostListFragmentDirections.ActionMyPostListFragmentToPostDetailsFragment action = MyPostListFragmentDirections.actionMyPostListFragmentToPostDetailsFragment(post.restaurant, post.meal, post.rate, post.description, post.username);
             Navigation.findNavController(view).navigate((NavDirections) action);
         });
         return view;
@@ -61,11 +62,11 @@ public class PostsListFragment extends Fragment {
     }
 
     void reloadData() {
-        binding.postsProgressBar.setVisibility(View.VISIBLE);
+        binding.myPostsProgressBar.setVisibility(View.VISIBLE);
         Model.instance().getAllPosts((postList) -> {
             data = postList;
             adapter.setData(data);
-            binding.postsProgressBar.setVisibility(View.GONE);
+            binding.myPostsProgressBar.setVisibility(View.GONE);
         });
     }
 }

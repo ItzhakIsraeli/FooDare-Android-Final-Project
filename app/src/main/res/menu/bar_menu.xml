@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_upload_button"
         android:title="@string/upload_bar"  />
     <item
-        android:id="@+id/addStudentFragment"
+        android:id="@+id/myPostListFragment"
         android:icon="@drawable/ic_post_button"
         android:title="@string/my_posts_bar"  />
     <item

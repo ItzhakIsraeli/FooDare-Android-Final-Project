@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "127137706688",
+    "project_id": "foodare-android-project",
+    "storage_bucket": "foodare-android-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127137706688:android:66377799800ffcb8efb325",
+        "android_client_info": {
+          "package_name": "com.example.foodare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127137706688-4gi0imgs5g1evsalicqdik27nng24tou.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBialg2i5mvmEnrIrTo2ARX_mIOttOa9XU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127137706688-4gi0imgs5g1evsalicqdik27nng24tou.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

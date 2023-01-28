@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostsListFragment">
+    tools:context=".MyPostListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_posts_frag_list"
@@ -12,26 +12,18 @@
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="10dp"
-        android:text="My Posts"
-        android:textAlignment="center"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/my_posts_frag_list"
+    <ProgressBar
+        android:id="@+id/my_posts_progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/my_posts_frag_list"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
