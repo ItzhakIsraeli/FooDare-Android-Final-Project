@@ -16,6 +16,7 @@ import com.example.foodare.model.Post;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Objects;
 
 
 class PostViewHolder extends RecyclerView.ViewHolder {
@@ -65,9 +66,9 @@ class PostViewHolder extends RecyclerView.ViewHolder {
         restaurantName.setText(post.restaurant);
         mealName.setText(post.meal);
         mealRate.setText(post.rate);
-        url=post.getImageUrl();
-        if (post.getImageUrl() != "") {
-            Picasso.get().load(post.getImageUrl()).placeholder(R.drawable.hamburger).into(mealImage);
+        url = post.getImageUrl();
+        if (!Objects.equals(url, "") && url != null) {
+            Picasso.get().load(url).placeholder(R.drawable.hamburger).into(mealImage);
         } else {
             mealImage.setImageResource(R.drawable.hamburger);
         }

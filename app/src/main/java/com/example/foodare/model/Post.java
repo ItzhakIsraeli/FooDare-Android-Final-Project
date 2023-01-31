@@ -1,8 +1,13 @@
 package com.example.foodare.model;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.foodare.MyApplication;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FieldValue;
 
@@ -47,8 +52,22 @@ public class Post {
     static final String MEAL = "meal";
     static final String RATE = "rate";
     static final String DESCRIPTION = "description";
-    static final String LAST_UPDATED = "lastUpdated";
     static final String IMAGE_URL = "imageUrl";
+
+    static final String LAST_UPDATED = "lastUpdated";
+    static final String LOCAL_LAST_UPDATED = "posts_local_last_update";
+
+    public static Long getLocalLastUpdate() {
+        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
+        return sharedPref.getLong(LOCAL_LAST_UPDATED, 0);
+    }
+
+    public static void setLocalLastUpdate(Long time) {
+        SharedPreferences sharedPref = MyApplication.getMyContext().getSharedPreferences("TAG", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putLong(LOCAL_LAST_UPDATED, time);
+        editor.commit();
+    }
 
     public static Post fromJson(Map<String, Object> json) {
         String id = (String) json.get(ID);
@@ -60,11 +79,12 @@ public class Post {
         String imageUrl = (String) json.get(IMAGE_URL);
 
         Post post = new Post(id, username, restaurant, meal, rate, description, imageUrl);
+
         try {
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
             post.setLastUpdated(time.getSeconds());
         } catch (Exception e) {
-
+            Log.d("ERROR", e.toString());
         }
         return post;
     }

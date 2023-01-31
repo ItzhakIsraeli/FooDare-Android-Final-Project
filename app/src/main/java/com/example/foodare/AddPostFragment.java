@@ -2,6 +2,7 @@ package com.example.foodare;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -22,7 +23,9 @@ import com.example.foodare.model.Post;
 public class AddPostFragment extends Fragment {
     FragmentAddPostBinding binding;
     ActivityResultLauncher<Void> cameraLauncher;
-    Boolean isImageSelected;
+    ActivityResultLauncher<String> galleryLauncher;
+
+    Boolean isImageSelected = false;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +41,16 @@ public class AddPostFragment extends Fragment {
                         }
                     }
                 });
+
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri result) {
+                if (result != null) {
+                    binding.addPostAvatarImage.setImageURI(result);
+                    isImageSelected = true;
+                }
+            }
+        });
     }
 
     @Override
@@ -63,12 +76,12 @@ public class AddPostFragment extends Fragment {
                     if (url != null) {
                         post.setImageUrl(url);
                     }
-                    Model.instance().addPost(post, () -> {
+                    Model.instance().addPost(post, (unused) -> {
                         Navigation.findNavController(uploadBtnView).popBackStack();
                     });
                 });
             } else {
-                Model.instance().addPost(post, () -> {
+                Model.instance().addPost(post, (unused) -> {
                     Navigation.findNavController(uploadBtnView).popBackStack();
                 });
             }
@@ -83,7 +96,7 @@ public class AddPostFragment extends Fragment {
         });
 
         binding.addPostGalleryBtn.setOnClickListener(galleryBtnView -> {
-
+            galleryLauncher.launch("image/*");
         });
 
         return view;

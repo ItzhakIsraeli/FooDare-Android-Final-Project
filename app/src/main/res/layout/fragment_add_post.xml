@@ -142,7 +142,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginBottom="100dp"
+                android:layout_marginBottom="40dp"
                 android:ems="10"
                 android:hint="Description"
                 android:minHeight="48dp"

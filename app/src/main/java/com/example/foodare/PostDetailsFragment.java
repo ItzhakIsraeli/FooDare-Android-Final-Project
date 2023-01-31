@@ -36,7 +36,7 @@ public class PostDetailsFragment extends Fragment {
         TextView descriptionTv = view.findViewById(R.id.post_details_description_tv);
         ImageView imageUrlIV = view.findViewById(R.id.post_details_image);
 
-        if (imageUrl != "") {
+        if (!imageUrl.equals("")) {
             Picasso.get().load(imageUrl).placeholder(R.drawable.hamburger).into(imageUrlIV);
         } else {
             imageUrlIV.setImageResource(R.drawable.hamburger);

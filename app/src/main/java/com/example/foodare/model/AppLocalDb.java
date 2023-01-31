@@ -9,7 +9,7 @@ import com.example.foodare.MyApplication;
 
 //TODO: add also User Entity
 
-@Database(entities = {Post.class}, version = 1)
+@Database(entities = {Post.class}, version = 2)
 abstract class AppLocalDbRepository extends RoomDatabase {
     public abstract PostDao PostDao();
 }

@@ -3,8 +3,11 @@ package com.example.foodare.model;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import androidx.core.os.HandlerCompat;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +19,7 @@ public class Model {
     private Executor executor = Executors.newSingleThreadExecutor();
     private Handler mainHandler = HandlerCompat.createAsync(Looper.getMainLooper());
     private FirebaseModel firebaseModel = new FirebaseModel();
+    AppLocalDbRepository localDb = AppLocalDb.getAppDb();
 
     public static Model instance() {
         return _instance;
@@ -24,56 +28,63 @@ public class Model {
     private Model() {
     }
 
-    List<Post> data = new LinkedList<>();
-
-    AppLocalDbRepository localDb = AppLocalDb.getAppDb();
-
-    public interface GetAllPostsListener {
-        void onComplete(List<Post> data);
+    public interface Listener<T> {
+        void onComplete(T data);
     }
 
-    public void getAllPosts(GetAllPostsListener callback) {
-//        executor.execute(() -> {
-//            List<Post> data = localDb.PostDao().getAll();
-//            try {
-//                Thread.sleep(500);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            mainHandler.post(() -> {
-//                callback.onComplete(data);
-//            });
-//        });
-
-        firebaseModel.getAllPosts(callback);
-
+    public enum LoadingState {
+        LOADING,
+        NOT_LOADING
     }
 
-    public interface AddPostListener {
-        void onComplete();
+    final public MutableLiveData<LoadingState> EventPostsListLoadingState = new MutableLiveData<LoadingState>(LoadingState.NOT_LOADING);
+
+    private LiveData<List<Post>> postsList;
+
+    public LiveData<List<Post>> getAllPosts() {
+        if (postsList == null) {
+            postsList = localDb.PostDao().getAll();
+            refreshAllPosts();
+        }
+        return postsList;
     }
 
-    public void addPost(Post post, AddPostListener listener) {
-//        executor.execute(() -> {
-//            localDb.PostDao().insertAll(post);
-//            try {
-//                Thread.sleep(500);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            mainHandler.post(() -> {
-//                listener.onComplete();
-//            });
-//        });
-
-        firebaseModel.addPost(post, listener);
+    public void refreshAllPosts() {
+        EventPostsListLoadingState.setValue(LoadingState.LOADING);
+        // get local last update
+        Long localLastUpdate = Post.getLocalLastUpdate();
+        // get all updated recorde from firebase since local last update
+        firebaseModel.getAllPostsSince(localLastUpdate, list -> {
+            executor.execute(() -> {
+                Log.d("TAG", " firebase return : " + list.size());
+                Long time = localLastUpdate;
+                for (Post post : list) {
+                    // insert new records into ROOM
+                    localDb.PostDao().insertAll(post);
+                    if (time < post.getLastUpdated()) {
+                        time = post.getLastUpdated();
+                    }
+                }
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // update local last update
+                Post.setLocalLastUpdate(time);
+                EventPostsListLoadingState.postValue(LoadingState.NOT_LOADING);
+            });
+        });
     }
 
-    public interface UploadImageListener {
-        void onComplete(String url);
+    public void addPost(Post post, Listener<Void> listener) {
+        firebaseModel.addPost(post, (Void) -> {
+            refreshAllPosts();
+            listener.onComplete(null);
+        });
     }
 
-    public void uploadImage(String name, Bitmap bitmap, UploadImageListener listener) {
+    public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {
         firebaseModel.uploadImage(name, bitmap, listener);
     }
 

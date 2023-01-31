@@ -1,5 +1,6 @@
 package com.example.foodare.model;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.*;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 @Dao
 public interface PostDao {
     @Query("select * from Post")
-    List<Post> getAll();
+    LiveData<List<Post>> getAll();
 
     @Query("select * from Post where id= :userId")
     List<Post> getPostsByUserId(String userId);
