@@ -6,32 +6,20 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="TAG" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="string" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7206dbb-2bc0-48c0-80e3-d5b1bd7b9d7f" name="Changes" comment="first commit - add screens and navigation">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostListFragmentViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" afterDir="false" />
+    <list default="true" id="f7206dbb-2bc0-48c0-80e3-d5b1bd7b9d7f" name="Changes" comment="add viewModel and liveData - TOGETHER 👌">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/AddPostFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/AddPostFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/MyPostListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/MyPostListFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostDetailsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostDetailsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostRecyclerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostRecyclerAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostsListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostsListFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/AppLocalDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/AppLocalDb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/FirebaseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/FirebaseModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/Post.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/PostDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/PostDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add_post.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add_post.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/my_post_list_row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/my_post_list_row.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/my_posts_fragment_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/my_posts_fragment_list.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/posts_fragment_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/posts_fragment_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +189,13 @@
       <option name="presentableId" value="LOCAL‎00003" />
       <updated>1674920365606</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL‎00004" summary="add viewModel and liveData - TOGETHER 👌">
+      <created>1675189559233</created>
+      <option name="number" value="LOCAL‎00004" />
+      <option name="presentableId" value="LOCAL‎00004" />
+      <updated>1675189559233</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -219,7 +213,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="add arguments and add alert" />
     <MESSAGE value="add firebase and room - TOGETHER " />
-    <option name="LAST_COMMIT_MESSAGE" value="add firebase and room - TOGETHER " />
+    <MESSAGE value="add viewModel and liveData - TOGETHER " />
+    <option name="LAST_COMMIT_MESSAGE" value="add viewModel and liveData - TOGETHER " />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

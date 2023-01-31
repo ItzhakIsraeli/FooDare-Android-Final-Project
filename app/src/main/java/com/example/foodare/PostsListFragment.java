@@ -19,56 +19,46 @@ import com.example.foodare.databinding.PostsFragmentListBinding;
 import com.example.foodare.model.Model;
 import com.example.foodare.model.Post;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class PostsListFragment extends Fragment {
     PostRecyclerAdapter adapter;
     PostsFragmentListBinding binding;
     PostListFragmentViewModel viewModel;
+    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-//        View view = inflater.inflate(R.layout.posts_fragment_list, container, false);
 
         binding = PostsFragmentListBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
-//        data = Model.instance().getAllPosts();
-
-//        reloadData();
-
-//        RecyclerView list = view.findViewById(R.id.posts_frag_list);
-        RecyclerView list = binding.postsFragList;
-
-        list.setHasFixedSize(true);
-
-        list.setLayoutManager(new LinearLayoutManager(getContext()));
+        view = binding.getRoot();
         adapter = new PostRecyclerAdapter(getLayoutInflater(), viewModel.getData().getValue(), R.layout.post_list_row);
-        list.setAdapter(adapter);
+        RecyclerView list = binding.postsFragList;
+        HandleLayoutManager(adapter, list, binding.postsSwipeRefresh);
 
-        adapter.setOnItemClickListener(position -> {
+        return view;
+    }
+
+    public void HandleLayoutManager(PostRecyclerAdapter adapterHandler, RecyclerView listHandler, androidx.swiperefreshlayout.widget.SwipeRefreshLayout postsSwipeRefreshHandler) {
+        listHandler.setHasFixedSize(true);
+        listHandler.setLayoutManager(new LinearLayoutManager(getContext()));
+        listHandler.setAdapter(adapterHandler);
+
+        adapterHandler.setOnItemClickListener(position -> {
             Log.d("TAG", "Row was clicked " + position);
             Post post = viewModel.getData().getValue().get(position);
-            PostsListFragmentDirections.ActionPostsListFragmentToPostDetailsFragment action = PostsListFragmentDirections.actionPostsListFragmentToPostDetailsFragment(post.restaurant, post.meal, post.rate, post.description, post.username, post.imageUrl);
+            NavDirections action =
+                    PostDetailsFragmentDirections.actionGlobalPostDetailsFragment(post.restaurant,
+                            post.meal, post.rate, post.description, post.username, post.imageUrl);
             Navigation.findNavController(view).navigate((NavDirections) action);
         });
 
-        viewModel.getData().observe(getViewLifecycleOwner(), observeList -> {
-            adapter.setData(observeList);
-            binding.postsProgressBar.setVisibility(View.GONE);
-        });
+        viewModel.getData().observe(getViewLifecycleOwner(), adapterHandler::setData);
 
         Model.instance().EventPostsListLoadingState.observe(getViewLifecycleOwner(), status -> {
-            binding.postsSwipeRefresh.setRefreshing(status == Model.LoadingState.LOADING);
+            postsSwipeRefreshHandler.setRefreshing(status == Model.LoadingState.LOADING);
         });
 
-        binding.postsSwipeRefresh.setOnRefreshListener(() -> {
-            reloadData();
-        });
-
-        return view;
+        postsSwipeRefreshHandler.setOnRefreshListener(this::reloadData);
     }
 
     @Override
@@ -78,12 +68,6 @@ public class PostsListFragment extends Fragment {
     }
 
     void reloadData() {
-//        binding.postsProgressBar.setVisibility(View.VISIBLE);
-//        Model.instance().getAllPosts((postList) -> {
-//            viewModel.setData(postList);
-//            adapter.setData(viewModel.getData());
-//            binding.postsProgressBar.setVisibility(View.GONE);
-//        });
         Model.instance().refreshAllPosts();
     }
 }

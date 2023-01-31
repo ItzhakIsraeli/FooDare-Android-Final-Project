@@ -8,11 +8,7 @@
         android:id="@+id/postsListFragment"
         android:name="com.example.foodare.PostsListFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/posts_fragment_list">
-        <action
-            android:id="@+id/action_postsListFragment_to_postDetailsFragment"
-            app:destination="@id/postDetailsFragment" />
-    </fragment>
+        tools:layout="@layout/posts_fragment_list"/>
     <fragment
         android:id="@+id/addPostFragment"
         android:name="com.example.foodare.AddPostFragment"
@@ -81,9 +77,6 @@
         android:label="@string/my_posts_bar"
         tools:layout="@layout/my_posts_fragment_list">
         <action
-            android:id="@+id/action_myPostListFragment_to_postDetailsFragment"
-            app:destination="@id/postDetailsFragment" />
-        <action
             android:id="@+id/action_myPostListFragment_to_editPostFragment"
             app:destination="@id/editPostFragment" />
     </fragment>
@@ -108,4 +101,5 @@
             android:name="imageUrl"
             app:argType="string" />
     </fragment>
+    <action android:id="@+id/action_global_postDetailsFragment" app:destination="@id/postDetailsFragment"/>
 </navigation>
