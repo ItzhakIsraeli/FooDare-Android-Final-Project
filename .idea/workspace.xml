@@ -13,13 +13,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7206dbb-2bc0-48c0-80e3-d5b1bd7b9d7f" name="Changes" comment="add viewModel and liveData - TOGETHER 👌">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f7206dbb-2bc0-48c0-80e3-d5b1bd7b9d7f" name="Changes" comment="add inheritance - TOGETHER 👌">
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/MyPostListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/MyPostListFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostsListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostsListFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/my_posts_fragment_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/my_posts_fragment_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/posts_fragment_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/posts_fragment_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +190,13 @@
       <option name="presentableId" value="LOCAL‎00004" />
       <updated>1675189559233</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL‎00005" summary="add inheritance - TOGETHER 👌">
+      <created>1675196542911</created>
+      <option name="number" value="LOCAL‎00005" />
+      <option name="presentableId" value="LOCAL‎00005" />
+      <updated>1675196542911</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -214,7 +215,8 @@
     <MESSAGE value="add arguments and add alert" />
     <MESSAGE value="add firebase and room - TOGETHER " />
     <MESSAGE value="add viewModel and liveData - TOGETHER " />
-    <option name="LAST_COMMIT_MESSAGE" value="add viewModel and liveData - TOGETHER " />
+    <MESSAGE value="add inheritance - TOGETHER " />
+    <option name="LAST_COMMIT_MESSAGE" value="add inheritance - TOGETHER " />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodare.databinding.MyPostsFragmentListBinding;
-import com.example.foodare.model.Model;
 
 public class MyPostListFragment extends PostsListFragment {
 
@@ -33,9 +32,5 @@ public class MyPostListFragment extends PostsListFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         viewModel = new ViewModelProvider(this).get(PostListFragmentViewModel.class);
-    }
-
-    void reloadData() {
-        Model.instance().refreshAllPosts();
     }
 }
