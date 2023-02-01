@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +25,7 @@ public class DailyMealFragment extends Fragment {
     String mealName;
     String category;
     String area;
-    String instructions;
+    String tags;
     String mealImage;
 
     @Override
@@ -37,31 +36,32 @@ public class DailyMealFragment extends Fragment {
 
         LiveData<List<Meal>> data = MealModel.instance.getDailyMeal();
 
-//        data.observe(getViewLifecycleOwner(), meal -> {
-//            Log.d("MEAL", "meal");
-//            mealName = meal.get(0).getStrMeal();
-//            category = meal.get(0).getStrCategory();
-//            area = meal.get(0).getStrArea();
-//            instructions = meal.get(0).getStrInstructions();
-//            mealImage = meal.get(0).getStrMealThumb();
-//        });
+        data.observe(getViewLifecycleOwner(), meal -> {
+            Log.d("MEAL", "meal");
+            mealName = meal.get(0).getStrMeal();
+            category = meal.get(0).getStrCategory();
+            area = meal.get(0).getStrArea();
+            tags = meal.get(0).getStrInstructions();
+            mealImage = meal.get(0).getStrMealThumb();
 
-        TextView mealTv = view.findViewById(R.id.daily_meal_name_tv);
-        TextView categoryTv = view.findViewById(R.id.daily_meal_category_tv);
-        TextView areaTv = view.findViewById(R.id.daily_meal_area_tv);
-        TextView instructionsTv = view.findViewById(R.id.daily_meal_instructions_tv);
-        ImageView imageUrlIV = view.findViewById(R.id.daily_meal_image);
+            TextView mealTv = view.findViewById(R.id.daily_meal_name_tv);
+            TextView categoryTv = view.findViewById(R.id.daily_meal_category_tv);
+            TextView areaTv = view.findViewById(R.id.daily_meal_area_tv);
+            TextView tagsTv = view.findViewById(R.id.daily_meal_tags_tv);
+            ImageView imageUrlIV = view.findViewById(R.id.daily_meal_image);
 
-        mealTv.setText(mealName);
-        categoryTv.setText(category);
-        areaTv.setText(area);
-        instructionsTv.setText(instructions);
+            mealTv.setText(mealName);
+            categoryTv.setText(category);
+            areaTv.setText(area);
+            tagsTv.setText(tags);
 
-        if (mealImage != "") {
-            Picasso.get().load(mealImage).placeholder(R.drawable.hamburger).into(imageUrlIV);
-        } else {
-            imageUrlIV.setImageResource(R.drawable.hamburger);
-        }
+            if (mealImage != "") {
+                Picasso.get().load(mealImage).placeholder(R.drawable.hamburger).into(imageUrlIV);
+            } else {
+                imageUrlIV.setImageResource(R.drawable.hamburger);
+            }
+
+        });
 
         Button backBtn = view.findViewById(R.id.daily_meal_btn);
 

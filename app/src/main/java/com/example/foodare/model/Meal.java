@@ -4,7 +4,7 @@ public class Meal {
     String strMeal;
     String strCategory;
     String strArea;
-    String strInstructions;
+    String strTags;
     String strMealThumb;
 
     public String getStrMeal() {
@@ -32,11 +32,11 @@ public class Meal {
     }
 
     public String getStrInstructions() {
-        return strInstructions;
+        return strTags;
     }
 
     public void setStrInstructions(String strInstructions) {
-        this.strInstructions = strInstructions;
+        this.strTags = strInstructions;
     }
 
     public String getStrMealThumb() {
