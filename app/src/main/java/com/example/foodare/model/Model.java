@@ -9,6 +9,9 @@ import androidx.core.os.HandlerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.auth.User;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -16,6 +19,7 @@ import java.util.concurrent.Executors;
 
 public class Model {
     private static final Model _instance = new Model();
+    public FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private Executor executor = Executors.newSingleThreadExecutor();
     private Handler mainHandler = HandlerCompat.createAsync(Looper.getMainLooper());
     private FirebaseModel firebaseModel = new FirebaseModel();
@@ -77,6 +81,18 @@ public class Model {
         });
     }
 
+    public void addUser(UserModel user, Listener<Void> listener) {
+        firebaseModel.addUser(user, (Void) -> {
+            listener.onComplete(null);
+        });
+    }
+
+    public void getUserById(String userId, Listener<Void> listener) {
+        firebaseModel.getUserById(userId, (user) -> {
+            listener.onComplete(null);
+        });
+    }
+
     public void addPost(Post post, Listener<Void> listener) {
         firebaseModel.addPost(post, (Void) -> {
             refreshAllPosts();
@@ -87,5 +103,4 @@ public class Model {
     public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {
         firebaseModel.uploadImage(name, bitmap, listener);
     }
-
 }

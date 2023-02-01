@@ -100,6 +100,9 @@
         <argument
             android:name="imageUrl"
             app:argType="string" />
+        <argument
+            android:name="postId"
+            app:argType="string" />
     </fragment>
     <action android:id="@+id/action_global_postDetailsFragment" app:destination="@id/postDetailsFragment" />
     <fragment

@@ -21,6 +21,7 @@ import com.example.foodare.model.Meal;
 import com.example.foodare.model.MealModel;
 import com.example.foodare.model.Model;
 import com.example.foodare.model.Post;
+import com.example.foodare.model.UserModel;
 
 public class PostsListFragment extends Fragment {
     PostRecyclerAdapter adapter;
@@ -41,6 +42,17 @@ public class PostsListFragment extends Fragment {
         binding.dailyMealBtn.setOnClickListener(btn -> {
             NavDirections action = DailyMealFragmentDirections.actionGlobalDailyMealFragment();
             Navigation.findNavController(view).navigate((NavDirections) action);
+        });
+        UserModel user = new UserModel("1234", "MorAndIzhak");
+
+        binding.textIcon.setOnClickListener(btn->{
+            Model.instance().getUserById(user.id, (unused) -> {
+//                Navigation.findNavController(btn).popBackStack();
+            });
+
+            Model.instance().addUser(user, (unused) -> {
+//                Navigation.findNavController(btn).popBackStack();
+            });
         });
 
         return view;

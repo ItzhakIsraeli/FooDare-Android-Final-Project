@@ -2,6 +2,7 @@ package com.example.foodare.model;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -14,6 +15,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -21,6 +23,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class FirebaseModel {
     FirebaseFirestore db;
@@ -56,6 +59,30 @@ public class FirebaseModel {
 
     public void addPost(Post post, Model.Listener<Void> listener) {
         db.collection(Post.COLLECTION).document(post.getId()).set(post.toJson())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        listener.onComplete(null);
+                    }
+                });
+    }
+
+    public void getUserById(String userId, Model.Listener<UserModel> callback) {
+        db.collection(UserModel.COLLECTION).document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                UserModel user = new UserModel("", "");
+                if (task.isSuccessful() && task.getResult() != null && task.getResult().getData() != null) {
+                    Map<String, Object> jsonData = task.getResult().getData();
+                    Log.d("JSON", UserModel.fromJson(jsonData).username);
+                }
+                callback.onComplete(user);
+            }
+        });
+    }
+
+    public void addUser(UserModel user, Model.Listener<Void> listener) {
+        db.collection(UserModel.COLLECTION).document(user.getId()).set(user.toJson())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
