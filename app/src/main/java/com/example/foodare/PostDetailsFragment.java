@@ -1,6 +1,7 @@
 package com.example.foodare;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.navigation.Navigation;
 
+import com.example.foodare.model.Meal;
+import com.example.foodare.model.MealModel;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 public class PostDetailsFragment extends Fragment {
 
@@ -52,6 +58,12 @@ public class PostDetailsFragment extends Fragment {
         button.setOnClickListener((buttonView) -> {
             Navigation.findNavController(buttonView).popBackStack();
         });
+
+        LiveData<List<Meal>> data = MealModel.instance.getDailyMeal();
+        data.observe(getViewLifecycleOwner(), meal1 -> {
+            Log.d("MEAL", "meal");
+        });
+
         return view;
     }
 }

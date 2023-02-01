@@ -24,7 +24,7 @@ public class MyPostListFragment extends PostsListFragment {
         binding = MyPostsFragmentListBinding.inflate(inflater, container, false);
         adapter = new PostRecyclerAdapter(getLayoutInflater(), viewModel.getDataByUser("1234").getValue(), R.layout.my_post_list_row);
         RecyclerView list = binding.myPostsFragList;
-        HandleLayoutManager(adapter, list, binding.postsSwipeRefresh);
+        HandleLayoutManager(adapter, list, binding.postsSwipeRefresh, binding.getRoot());
         return binding.getRoot();
     }
 
