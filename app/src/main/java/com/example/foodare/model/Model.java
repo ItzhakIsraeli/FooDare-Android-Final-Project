@@ -10,9 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.auth.User;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -87,7 +85,7 @@ public class Model {
         });
     }
 
-    public void getUserById(String userId, Listener<Void> listener) {
+    public void getUserByMail(String userId, Listener<Void> listener) {
         firebaseModel.getUserById(userId, (user) -> {
             listener.onComplete(null);
         });

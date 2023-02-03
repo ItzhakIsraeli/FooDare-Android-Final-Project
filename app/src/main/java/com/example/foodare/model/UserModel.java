@@ -19,32 +19,48 @@ public class UserModel {
     @PrimaryKey
     @NonNull
     public @androidx.annotation.NonNull
-    String id = "";
+    String mail = "";
     public String username = "";
+    public String phone = "";
+    public String age = "";
+    public String password = "";
     public Long lastUpdated;
+    private String imageUrl = "";
 
-    public UserModel(@androidx.annotation.NonNull String id, String username) {
-        this.id = id;
+    public UserModel(@androidx.annotation.NonNull String mail, String username, String age, String phone, String password, String imageUrl) {
+        this.mail = mail;
         this.username = username;
+        this.age = age;
+        this.phone = phone;
+        this.password = password;
+        this.imageUrl = imageUrl;
     }
 
     public static UserModel instance() {
         return _instance;
     }
 
+    public UserModel() {
+    }
 
-    public UserModel(){}
-
-    static final String ID = "id";
+    static final String MAIL = "mail";
     static final String USERNAME = "username";
+    static final String AGE = "age";
+    static final String PHONE = "phone";
+    static final String PASSWORD = "password";
     static final String COLLECTION = "users";
     static final String LAST_UPDATED = "lastUpdated";
+    static final String IMAGE_URL = "imageUrl";
     static final String LOCAL_LAST_UPDATED = "users_local_last_update";
 
     public static UserModel fromJson(Map<String, Object> json) {
-        String id = (String) json.get(ID);
+        String mail = (String) json.get(MAIL);
         String username = (String) json.get(USERNAME);
-        UserModel user = new UserModel(id, username);
+        String age = (String) json.get(AGE);
+        String phone = (String) json.get(PHONE);
+        String password = (String) json.get(PASSWORD);
+        String imageUrl = (String) json.get(IMAGE_URL);
+        UserModel user = new UserModel(mail, username, age, phone, password, imageUrl);
 
         try {
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
@@ -57,18 +73,22 @@ public class UserModel {
 
     public Map<String, Object> toJson() {
         Map<String, Object> json = new HashMap<>();
-        json.put(ID, getId());
+        json.put(MAIL, getMail());
         json.put(USERNAME, getUsername());
+        json.put(AGE, getAge());
+        json.put(PHONE, getPhone());
+        json.put(PASSWORD, getPassword());
+        json.put(IMAGE_URL, getImageUrl());
         return json;
     }
 
     @androidx.annotation.NonNull
-    public String getId() {
-        return id;
+    public String getMail() {
+        return mail;
     }
 
-    public void setId(@androidx.annotation.NonNull String id) {
-        this.id = id;
+    public void setMail(@androidx.annotation.NonNull String mail) {
+        this.mail = mail;
     }
 
     public String getUsername() {
@@ -79,6 +99,30 @@ public class UserModel {
         this.username = username;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Long getLastUpdated() {
         return lastUpdated;
     }
@@ -87,4 +131,11 @@ public class UserModel {
         this.lastUpdated = lastUpdated;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }

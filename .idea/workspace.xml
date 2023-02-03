@@ -6,30 +6,23 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="WHT" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ADD" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7206dbb-2bc0-48c0-80e3-d5b1bd7b9d7f" name="Changes" comment="fix restApi - Together 👀">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/LoginActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/RegisterActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/FirebaseUserModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/UserModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" afterDir="false" />
+    <list default="true" id="f7206dbb-2bc0-48c0-80e3-d5b1bd7b9d7f" name="Changes" comment="add login and register - Together 👀">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/EditPostFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/EditPostFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostRecyclerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostRecyclerAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostsListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostsListFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/RegisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/RegisterActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/FirebaseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/FirebaseModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/posts_fragment_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/posts_fragment_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +96,7 @@
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="android-custom-viewC:/Users/morik/.gradle/caches/modules-2/files-2.1/androidx.constraintlayout/constraintlayout/2.1.4/27e12209e529970f69bc817f349c247ef238fae7/constraintlayout-2.1.4-sources.jar!/androidx/constraintlayout/widget/ConstraintLayout.java_SELECTED" value="ConstraintLayout" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../2023_fall_semester" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -237,7 +230,13 @@
       <option name="presentableId" value="LOCAL‎00007" />
       <updated>1675272718997</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL‎00008" summary="add login and register - Together 👀">
+      <created>1675287829969</created>
+      <option name="number" value="LOCAL‎00008" />
+      <option name="presentableId" value="LOCAL‎00008" />
+      <updated>1675287829969</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -258,7 +257,8 @@
     <MESSAGE value="add viewModel and liveData - TOGETHER " />
     <MESSAGE value="add inheritance - TOGETHER " />
     <MESSAGE value="fix restApi - Together " />
-    <option name="LAST_COMMIT_MESSAGE" value="fix restApi - Together " />
+    <MESSAGE value="add login and register - Together " />
+    <option name="LAST_COMMIT_MESSAGE" value="add login and register - Together " />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -284,34 +284,9 @@
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/LoginActivity.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/LoginActivity.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/LoginActivity.java</url>
-          <line>18</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/LoginActivity.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/LoginActivity.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/LoginActivity.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="43" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/RegisterActivity.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="54" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

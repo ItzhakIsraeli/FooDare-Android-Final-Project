@@ -71,7 +71,7 @@ public class FirebaseModel {
         db.collection(UserModel.COLLECTION).document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                UserModel user = new UserModel("", "");
+                UserModel user = new UserModel("", "", "", "", "","");
                 if (task.isSuccessful() && task.getResult() != null && task.getResult().getData() != null) {
                     Map<String, Object> jsonData = task.getResult().getData();
                     Log.d("JSON", UserModel.fromJson(jsonData).username);
@@ -82,7 +82,7 @@ public class FirebaseModel {
     }
 
     public void addUser(UserModel user, Model.Listener<Void> listener) {
-        db.collection(UserModel.COLLECTION).document(user.getId()).set(user.toJson())
+        db.collection(UserModel.COLLECTION).document(user.getMail()).set(user.toJson())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

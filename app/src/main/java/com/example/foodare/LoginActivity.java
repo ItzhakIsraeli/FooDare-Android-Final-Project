@@ -19,10 +19,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.loginActivityRegisterBtn.setOnClickListener(view -> {
-            Log.d("WHT","WHAYYYYYYYYYYYYYYYYYYYYYYYY");
-            Intent intent = new Intent(this, RegisterActivity.class);
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(intent);
             finish();
         });
+
+        binding.loginActivityLoginBtn.setOnClickListener(view -> {
+            // TODO: add login
+            Log.d("LOGIN", "Add login");
+        });
+
     }
 }
