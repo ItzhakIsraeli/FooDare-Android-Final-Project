@@ -29,11 +29,21 @@
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ImageButton
+        android:id="@+id/textIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/ic_baseline_tips_and_updates_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/postsSwipeRefresh" />
+
+    <ImageButton
         android:id="@+id/daily_meal_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/borderless_white_button"
         android:layout_marginBottom="20dp"
         android:src="@drawable/ic_baseline_tips_and_updates_24"
         app:layout_constraintBottom_toBottomOf="parent"
