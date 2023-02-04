@@ -108,6 +108,6 @@
     <fragment
         android:id="@+id/dailyMealFragment"
         android:name="com.example.foodare.DailyMealFragment"
-        android:label="fragment_daily_meal"
+        android:label="@string/daily_meal"
         tools:layout="@layout/fragment_daily_meal" /><action android:id="@+id/action_global_dailyMealFragment" app:destination="@id/dailyMealFragment"/>
 </navigation>

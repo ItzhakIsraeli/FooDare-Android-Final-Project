@@ -1,8 +1,11 @@
 package com.example.foodare.model;
 
+import static com.example.foodare.MyApplication.getMyContext;
+
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -11,11 +14,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -24,13 +29,16 @@ import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
 
 public class FirebaseModel {
     FirebaseFirestore db;
     FirebaseStorage storage;
+    FirebaseAuth mAuth;
 
     FirebaseModel() {
         db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(false)
                 .build();
@@ -67,19 +75,20 @@ public class FirebaseModel {
                 });
     }
 
-    public void getUserById(String userId, Model.Listener<UserModel> callback) {
-        db.collection(UserModel.COLLECTION).document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                UserModel user = new UserModel("", "", "", "", "","");
-                if (task.isSuccessful() && task.getResult() != null && task.getResult().getData() != null) {
-                    Map<String, Object> jsonData = task.getResult().getData();
-                    Log.d("JSON", UserModel.fromJson(jsonData).username);
-                }
-                callback.onComplete(user);
-            }
-        });
-    }
+//    public void getUserByMail(String userMail, Model.Listener<UserModel> callback) {
+//        db.collection(UserModel.COLLECTION).document(userMail).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                UserModel user = new UserModel("", "", "", "", "", "");
+//                if (task.isSuccessful() && task.getResult() != null && task.getResult().getData() != null) {
+//                    Map<String, Object> jsonData = task.getResult().getData();
+//                    Log.d("JSON", UserModel.fromJson(jsonData).mail);
+//                }
+//                callback.onComplete(user);
+//            }
+//        });
+//    }
+
 
     public void addUser(UserModel user, Model.Listener<Void> listener) {
         db.collection(UserModel.COLLECTION).document(user.getMail()).set(user.toJson())
@@ -89,6 +98,37 @@ public class FirebaseModel {
                         listener.onComplete(null);
                     }
                 });
+    }
+
+    public void logoutUser() {
+        mAuth.signOut();
+    }
+
+    public void addFirebaseUser(String mail, String password) {
+        mAuth.createUserWithEmailAndPassword(mail, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getMyContext(),
+                                            "Registration successful!",
+                                            Toast.LENGTH_LONG)
+                                    .show();
+                            Log.d("FIREBASE", "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                        } else {
+                            Toast.makeText(getMyContext(),
+                                            "Registration failed!",
+                                            Toast.LENGTH_LONG)
+                                    .show();
+                            Log.d("FIREBASE", "createUserWithEmail:failure", task.getException());
+                        }
+                    }
+                });
+    }
+
+    public boolean isUserConnected() {
+        return mAuth.getCurrentUser() != null;
     }
 
     void uploadImage(String name, Bitmap bitmap, Model.Listener<String> listener) {

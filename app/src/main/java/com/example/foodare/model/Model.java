@@ -17,7 +17,6 @@ import java.util.concurrent.Executors;
 
 public class Model {
     private static final Model _instance = new Model();
-    public FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private Executor executor = Executors.newSingleThreadExecutor();
     private Handler mainHandler = HandlerCompat.createAsync(Looper.getMainLooper());
     private FirebaseModel firebaseModel = new FirebaseModel();
@@ -79,6 +78,25 @@ public class Model {
         });
     }
 
+    public void addPost(Post post, Listener<Void> listener) {
+        firebaseModel.addPost(post, (Void) -> {
+            refreshAllPosts();
+            listener.onComplete(null);
+        });
+    }
+
+    public void addFirebaseUser(String mail, String password) {
+        firebaseModel.addFirebaseUser(mail, password);
+    }
+
+    public void logoutUser() {
+        firebaseModel.logoutUser();
+    }
+
+    public boolean isUserConnected() {
+        return firebaseModel.isUserConnected();
+    }
+
     public void addUser(UserModel user, Listener<Void> listener) {
         firebaseModel.addUser(user, (Void) -> {
             listener.onComplete(null);
@@ -86,16 +104,9 @@ public class Model {
     }
 
     public void getUserByMail(String userId, Listener<Void> listener) {
-        firebaseModel.getUserById(userId, (user) -> {
-            listener.onComplete(null);
-        });
-    }
-
-    public void addPost(Post post, Listener<Void> listener) {
-        firebaseModel.addPost(post, (Void) -> {
-            refreshAllPosts();
-            listener.onComplete(null);
-        });
+//        firebaseModel.getUserByMail(userId, (user) -> {
+//            listener.onComplete(null);
+//        });
     }
 
     public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {

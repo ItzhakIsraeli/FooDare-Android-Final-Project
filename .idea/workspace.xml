@@ -14,22 +14,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f7206dbb-2bc0-48c0-80e3-d5b1bd7b9d7f" name="Changes" comment="add login and register - Together 👀">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/borderless_orange_button.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_logout_24.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostsListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostsListFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/RegisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/RegisterActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/UserProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/UserProfileFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/FirebaseModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/FirebaseModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/UserModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/white_button.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/borderless_white_button.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_user_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_user_profile.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/posts_fragment_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/posts_fragment_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\morik\.android\avd\Pixel_3a_API_33_x86_64.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\izik1\.android\avd\Pixel_3a_API_33.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -104,11 +111,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\degree_projects\android\FooDare-Android-Final-Project\app\src\main\res\drawable-v24" />
       <recent name="C:\degreeProjects\FooDare-Android-Final-Project\app\src\main\res\layout" />
       <recent name="C:\degreeProjects\FooDare-Android-Final-Project\app\src\main\java\com\example\foodare" />
       <recent name="C:\degreeProjects\FooDare-Android-Final-Project\app" />
       <recent name="C:\degreeProjects\FooDare-Android-Final-Project\app\src\main\java\com\example\foodare\model" />
-      <recent name="C:\degree_projects\android\FooDare-Android-Final-Project\app\src\main\res\drawable-v24" />
     </key>
     <key name="android.template.6497874">
       <recent name="com.example.foodare" />
@@ -264,29 +271,49 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostDetailsFragment.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostDetailsFragment.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/PostDetailsFragment.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/DailyMealFragment.java</url>
           <line>40</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/RegisterActivity.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="54" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/FirebaseModel.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/FirebaseModel.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/FirebaseModel.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/FirebaseModel.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/FirebaseModel.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/model/Model.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/MainActivity.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/foodare/MainActivity.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

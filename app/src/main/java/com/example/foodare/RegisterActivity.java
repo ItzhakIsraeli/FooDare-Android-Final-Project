@@ -72,13 +72,18 @@ public class RegisterActivity extends AppCompatActivity {
                         user.setImageUrl(url);
                     }
                     Model.instance().addUser(user, (unused) -> {
-                        // TODO: fix this to move to main activity after the registration with firebase
+                        Model.instance().addFirebaseUser(user.getMail(), user.getPassword());
+                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                        startActivity(intent);
                         finish();
                     });
                 });
             } else {
                 Model.instance().addUser(user, (unused) -> {
                     Log.d("ADD", "add");
+                    Model.instance().addFirebaseUser(user.getMail(), user.getPassword());
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    startActivity(intent);
                     finish();
                 });
             }
