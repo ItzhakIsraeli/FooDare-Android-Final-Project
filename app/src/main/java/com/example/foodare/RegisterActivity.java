@@ -59,7 +59,6 @@ public class RegisterActivity extends AppCompatActivity {
             String phone = binding.userRegisterPhoneEt.getText().toString();
             String mail = binding.userRegisterMailEt.getText().toString();
             String password = binding.userRegisterPasswordEt.getText().toString();
-            Log.d("ADD", "add2");
 
             UserModel user = new UserModel(mail, name, age, phone, password, "");
 
@@ -72,21 +71,22 @@ public class RegisterActivity extends AppCompatActivity {
                         user.setImageUrl(url);
                     }
                     Model.instance().addUser(user, (unused) -> {
-                        Model.instance().addFirebaseUser(user.getMail(), user.getPassword());
+                        Model.instance().addFirebaseUser(user.getMail(), user.getPassword(), (callback) -> {
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        });
+                    });
+                });
+            } else {
+                Model.instance().addUser(user, (unused) -> {
+                    Model.instance().addFirebaseUser(user.getMail(), user.getPassword(), (callback) -> {
                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     });
                 });
-            } else {
-                Model.instance().addUser(user, (unused) -> {
-                    Log.d("ADD", "add");
-                    Model.instance().addFirebaseUser(user.getMail(), user.getPassword());
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                });
-            }
+            };
         });
 
         binding.userRegisterCameraBtn.setOnClickListener(cameraBtnView -> {

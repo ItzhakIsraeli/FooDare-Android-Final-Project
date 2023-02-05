@@ -23,12 +23,10 @@ public class EditProfileFragment extends Fragment {
         String name = EditProfileFragmentArgs.fromBundle(getArguments()).getName();
         String age = EditProfileFragmentArgs.fromBundle(getArguments()).getAge();
         String phone = EditProfileFragmentArgs.fromBundle(getArguments()).getPhone();
-        String mail = EditProfileFragmentArgs.fromBundle(getArguments()).getMail();
 
         TextView nameTv = view.findViewById(R.id.edit_profile_name_et);
         TextView ageTv = view.findViewById(R.id.edit_profile_age_et);
         TextView phoneTv = view.findViewById(R.id.edit_profile_phone_et);
-        TextView mailTv = view.findViewById(R.id.edit_profile_mail_et);
 
         saveBtn.setOnClickListener(saveBtnView -> {
             // TODO: save changes to DB
@@ -38,11 +36,9 @@ public class EditProfileFragment extends Fragment {
             Navigation.findNavController(cancelBtnView).popBackStack();
         });
 
-//        usernameTv.setText(username);
         nameTv.setText(name);
         ageTv.setText(age);
         phoneTv.setText(phone);
-        mailTv.setText(mail);
         return view;
     }
 }

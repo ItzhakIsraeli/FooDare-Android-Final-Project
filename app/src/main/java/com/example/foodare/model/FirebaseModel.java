@@ -28,6 +28,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class FirebaseModel {
     FirebaseFirestore db;
@@ -42,6 +43,10 @@ public class FirebaseModel {
                 .build();
         db.setFirestoreSettings(settings);
         storage = FirebaseStorage.getInstance();
+    }
+
+    public void deletePost(String postId) {
+        db.collection(Post.COLLECTION).document(postId).delete();
     }
 
     public void getAllPostsSince(Long since, Model.Listener<List<Post>> callback) {
@@ -73,20 +78,24 @@ public class FirebaseModel {
                 });
     }
 
-//    public void getUserByMail(String userMail, Model.Listener<UserModel> callback) {
-//        db.collection(UserModel.COLLECTION).document(userMail).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                UserModel user = new UserModel("", "", "", "", "", "");
-//                if (task.isSuccessful() && task.getResult() != null && task.getResult().getData() != null) {
-//                    Map<String, Object> jsonData = task.getResult().getData();
-//                    Log.d("JSON", UserModel.fromJson(jsonData).mail);
-//                }
-//                callback.onComplete(user);
-//            }
-//        });
-//    }
+    public void getUserByMail(String userMail, Model.Listener<UserModel> callback) {
+        db.collection(UserModel.COLLECTION).document(userMail).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                UserModel user = null;
+                if (task.isSuccessful() && task.getResult() != null && task.getResult().getData() != null) {
+                    Map<String, Object> jsonData = task.getResult().getData();
+                    user = UserModel.fromJson(jsonData);
+                    Log.d("JSON", UserModel.fromJson(jsonData).mail);
+                }
+                callback.onComplete(user);
+            }
+        });
+    }
 
+    public String getCurrentUserMail() {
+        return mAuth.getCurrentUser().getEmail();
+    }
 
     public void addUser(UserModel user, Model.Listener<Void> listener) {
         db.collection(UserModel.COLLECTION).document(user.getMail()).set(user.toJson())
@@ -102,7 +111,7 @@ public class FirebaseModel {
         mAuth.signOut();
     }
 
-    public void addFirebaseUser(String mail, String password) {
+    public void addFirebaseUser(String mail, String password, Model.Listener<Void> listener) {
         mAuth.createUserWithEmailAndPassword(mail, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -112,14 +121,13 @@ public class FirebaseModel {
                                             "Registration successful!",
                                             Toast.LENGTH_LONG)
                                     .show();
-                            Log.d("FIREBASE", "createUserWithEmail:success");
+                            listener.onComplete(null);
                             FirebaseUser user = mAuth.getCurrentUser();
                         } else {
                             Toast.makeText(getMyContext(),
                                             "Registration failed!",
                                             Toast.LENGTH_LONG)
                                     .show();
-                            Log.d("FIREBASE", "createUserWithEmail:failure", task.getException());
                         }
                     }
                 });
@@ -153,5 +161,28 @@ public class FirebaseModel {
                 });
             }
         });
+    }
+
+    public void loginUser(String mail, String password, Model.Listener<Void> listener) {
+        mAuth.signInWithEmailAndPassword(mail, password)
+                .addOnCompleteListener(
+                        new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(
+                                    @NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    listener.onComplete(null);
+                                    Toast.makeText(getMyContext(),
+                                                    "Login successful!!",
+                                                    Toast.LENGTH_LONG)
+                                            .show();
+                                } else {
+                                    Toast.makeText(getMyContext(),
+                                                    "Login failed!!",
+                                                    Toast.LENGTH_LONG)
+                                            .show();
+                                }
+                            }
+                        });
     }
 }

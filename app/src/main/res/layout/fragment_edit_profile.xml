@@ -19,17 +19,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/edit_profile_save_btn" />
 
-    <TextView
-        android:id="@+id/edit_profile_mail_title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:text="Mail:"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_phone_title_tv" />
-
     <EditText
         android:id="@+id/edit_profile_name_et"
         android:layout_width="wrap_content"
@@ -65,18 +54,6 @@
         android:minHeight="48dp"
         app:layout_constraintBaseline_toBaselineOf="@+id/edit_profile_phone_title_tv"
         app:layout_constraintStart_toStartOf="@+id/edit_profile_age_et"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/edit_profile_mail_et"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Mail"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/edit_profile_mail_title_tv"
-        app:layout_constraintStart_toStartOf="@+id/edit_profile_phone_et"
         tools:ignore="MissingConstraints" />
 
     <TextView

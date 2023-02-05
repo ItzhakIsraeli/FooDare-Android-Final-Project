@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,7 @@ public class EditPostFragment extends Fragment {
             String newMeal = mealEt.getText().toString();
             String newRate = rateEt.getText().toString();
             String newDescription = descriptionEt.getText().toString();
-            Post post = new Post(postId, "MorAndIzhak", newRestaurant, newMeal, newRate, newDescription, imageUrl);
+            Post post = new Post(postId, Model.instance().getCurrentUserMail(), newRestaurant, newMeal, newRate, newDescription, imageUrl);
 
             Model.instance().addPost(post, (unused) -> {
                 Navigation.findNavController(uploadBtnView).popBackStack();
@@ -75,7 +76,10 @@ public class EditPostFragment extends Fragment {
 
         deleteBtn.setOnClickListener((buttonView) -> {
             DeleteDialogFragment deleteDialogFragment = new DeleteDialogFragment();
-            deleteDialogFragment.show(getChildFragmentManager(), "IZHAK");
+            Bundle args = new Bundle();
+            args.putString("postId", postId);
+            deleteDialogFragment.setArguments(args);
+            deleteDialogFragment.show(getChildFragmentManager(), "DELETE_POST");
         });
         return view;
     }

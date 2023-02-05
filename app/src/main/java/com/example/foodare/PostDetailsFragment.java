@@ -35,7 +35,7 @@ public class PostDetailsFragment extends Fragment {
         String imageUrl = PostDetailsFragmentArgs.fromBundle(getArguments()).getImageUrl();
 
 
-//        TextView usernameTv = view.findViewById(R.id.post_details_username_tv);
+        TextView usernameTv = view.findViewById(R.id.post_details_username_tv);
         TextView restaurantTv = view.findViewById(R.id.post_details_restaurant_tv);
         TextView mealTv = view.findViewById(R.id.post_details_meal_tv);
         TextView rateTv = view.findViewById(R.id.post_details_rate_tv);
@@ -48,7 +48,7 @@ public class PostDetailsFragment extends Fragment {
             imageUrlIV.setImageResource(R.drawable.hamburger);
         }
 
-//        usernameTv.setText(username);
+        usernameTv.setText(username);
         restaurantTv.setText(restaurant);
         mealTv.setText(meal);
         rateTv.setText(rate);

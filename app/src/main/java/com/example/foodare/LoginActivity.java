@@ -7,6 +7,7 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodare.databinding.ActivityLoginBinding;
+import com.example.foodare.model.Model;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -25,8 +26,13 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         binding.loginActivityLoginBtn.setOnClickListener(view -> {
-            // TODO: add login
-            Log.d("LOGIN", "Add login");
+            String email = binding.loginActivityEmailEt.getText().toString();
+            String password = binding.loginActivityPasswordEt.getText().toString();
+            Model.instance().loginUser(email, password, (callback) -> {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            });
         });
 
     }

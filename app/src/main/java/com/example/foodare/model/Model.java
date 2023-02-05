@@ -48,6 +48,10 @@ public class Model {
         return postsList;
     }
 
+    public void deletePost(String postId){
+        firebaseModel.deletePost(postId);
+    }
+
     public void refreshAllPosts() {
         EventPostsListLoadingState.setValue(LoadingState.LOADING);
         // get local last update
@@ -83,8 +87,20 @@ public class Model {
         });
     }
 
-    public void addFirebaseUser(String mail, String password) {
-        firebaseModel.addFirebaseUser(mail, password);
+    public void loginUser(String mail, String password, Listener<Void> listener) {
+        firebaseModel.loginUser(mail, password, (Void) -> {
+            listener.onComplete(null);
+        });
+    }
+
+    public void addFirebaseUser(String mail, String password, Listener<Void> listener) {
+        firebaseModel.addFirebaseUser(mail, password, (Void) -> {
+            listener.onComplete(null);
+        });
+    }
+
+    public String getCurrentUserMail(){
+        return firebaseModel.getCurrentUserMail();
     }
 
     public void logoutUser() {
@@ -101,10 +117,8 @@ public class Model {
         });
     }
 
-    public void getUserByMail(String userId, Listener<Void> listener) {
-//        firebaseModel.getUserByMail(userId, (user) -> {
-//            listener.onComplete(null);
-//        });
+    public void getUserByMail(String mail, Listener<UserModel> listener) {
+        firebaseModel.getUserByMail(mail, listener);
     }
 
     public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {

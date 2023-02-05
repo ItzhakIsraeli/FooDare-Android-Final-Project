@@ -61,9 +61,6 @@
         <argument
             android:name="phone"
             app:argType="string" />
-        <argument
-            android:name="mail"
-            app:argType="string" />
     </fragment>
     <action
         android:id="@+id/action_global_addPostFragment"
