@@ -60,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
             String mail = binding.userRegisterMailEt.getText().toString();
             String password = binding.userRegisterPasswordEt.getText().toString();
 
-            UserModel user = new UserModel(mail, name, age, phone, password, "");
+            UserModel user = new UserModel(mail, name, age, phone, "");
 
             if (isImageSelected) {
                 binding.userRegisterAvatar.setDrawingCacheEnabled(true);
@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
                         user.setImageUrl(url);
                     }
                     Model.instance().addUser(user, (unused) -> {
-                        Model.instance().addFirebaseUser(user.getMail(), user.getPassword(), (callback) -> {
+                        Model.instance().addFirebaseUser(user.getMail(),password, (callback) -> {
                             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                 });
             } else {
                 Model.instance().addUser(user, (unused) -> {
-                    Model.instance().addFirebaseUser(user.getMail(), user.getPassword(), (callback) -> {
+                    Model.instance().addFirebaseUser(user.getMail(), password, (callback) -> {
                         Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();

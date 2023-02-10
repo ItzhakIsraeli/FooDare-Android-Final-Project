@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.navigation.Navigation;
 
 import com.example.foodare.model.Model;
+import com.example.foodare.model.Post;
 
 public class DeleteDialogFragment extends DialogFragment {
     @NonNull

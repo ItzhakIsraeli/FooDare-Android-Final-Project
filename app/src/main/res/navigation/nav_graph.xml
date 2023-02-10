@@ -61,6 +61,9 @@
         <argument
             android:name="phone"
             app:argType="string" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
     </fragment>
     <action
         android:id="@+id/action_global_addPostFragment"

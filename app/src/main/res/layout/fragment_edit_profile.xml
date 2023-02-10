@@ -69,7 +69,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/edit_post_image"
+        android:id="@+id/edit_profile_avatar"
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:layout_marginTop="10dp"
@@ -88,7 +88,7 @@
         android:text="Name:"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_post_image" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_avatar" />
 
     <Button
         android:id="@+id/edit_profile_save_btn"
@@ -113,5 +113,28 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_profile_age_title_tv" />
+
+    <ImageButton
+        android:id="@+id/edit_user_camera_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_baseline_camera_alt_24"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_profile_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/edit_user_gallery_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_image_search_small"
+        app:layout_constraintBottom_toTopOf="@+id/edit_user_camera_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.906" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,16 +23,14 @@ public class UserModel {
     public String username = "";
     public String phone = "";
     public String age = "";
-    public String password = "";
     public Long lastUpdated;
     private String imageUrl = "";
 
-    public UserModel(@androidx.annotation.NonNull String mail, String username, String age, String phone, String password, String imageUrl) {
+    public UserModel(@androidx.annotation.NonNull String mail, String username, String age, String phone, String imageUrl) {
         this.mail = mail;
         this.username = username;
         this.age = age;
         this.phone = phone;
-        this.password = password;
         this.imageUrl = imageUrl;
     }
 
@@ -47,7 +45,6 @@ public class UserModel {
     static final String USERNAME = "username";
     static final String AGE = "age";
     static final String PHONE = "phone";
-    static final String PASSWORD = "password";
     static final String COLLECTION = "users";
     static final String LAST_UPDATED = "lastUpdated";
     static final String IMAGE_URL = "imageUrl";
@@ -58,9 +55,8 @@ public class UserModel {
         String username = (String) json.get(USERNAME);
         String age = (String) json.get(AGE);
         String phone = (String) json.get(PHONE);
-        String password = (String) json.get(PASSWORD);
         String imageUrl = (String) json.get(IMAGE_URL);
-        UserModel user = new UserModel(mail, username, age, phone, password, imageUrl);
+        UserModel user = new UserModel(mail, username, age, phone, imageUrl);
 
         try {
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
@@ -77,7 +73,6 @@ public class UserModel {
         json.put(USERNAME, getUsername());
         json.put(AGE, getAge());
         json.put(PHONE, getPhone());
-        json.put(PASSWORD, getPassword());
         json.put(IMAGE_URL, getImageUrl());
         return json;
     }
@@ -113,14 +108,6 @@ public class UserModel {
 
     public void setAge(String age) {
         this.age = age;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Long getLastUpdated() {

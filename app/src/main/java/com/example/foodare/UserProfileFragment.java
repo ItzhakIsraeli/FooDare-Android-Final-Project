@@ -16,6 +16,8 @@ import com.example.foodare.model.UserModel;
 import com.squareup.picasso.Picasso;
 
 public class UserProfileFragment extends Fragment {
+    String imageUrl = "";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class UserProfileFragment extends Fragment {
             phoneTv.setText(user.getPhone());
             mailTv.setText(user.getMail());
             if (!user.getImageUrl().equals("")) {
+                imageUrl = user.getImageUrl();
                 Picasso.get().load(user.getImageUrl()).placeholder(R.drawable.userimage).into(image);
             } else {
                 image.setImageResource(R.drawable.userimage);
@@ -46,7 +49,8 @@ public class UserProfileFragment extends Fragment {
             String age = (String) ageTv.getText();
             String phone = (String) phoneTv.getText();
 
-            UserProfileFragmentDirections.ActionUserProfileFragmentToEditProfileFragment action = UserProfileFragmentDirections.actionUserProfileFragmentToEditProfileFragment(name, age, phone);
+            UserProfileFragmentDirections.ActionUserProfileFragmentToEditProfileFragment action =
+                    UserProfileFragmentDirections.actionUserProfileFragmentToEditProfileFragment(name, age, phone, imageUrl);
             Navigation.findNavController(view).navigate(action);
         });
 

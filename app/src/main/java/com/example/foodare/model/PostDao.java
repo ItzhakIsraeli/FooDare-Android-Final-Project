@@ -18,4 +18,7 @@ public interface PostDao {
 
     @Delete
     void delete(Post post);
+
+    @Query("DELETE FROM Post WHERE id = :postId")
+    void deletePostById(String postId);
 }
