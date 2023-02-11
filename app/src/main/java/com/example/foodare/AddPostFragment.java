@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,6 @@ public class AddPostFragment extends Fragment {
     FragmentAddPostBinding binding;
     ActivityResultLauncher<Void> cameraLauncher;
     ActivityResultLauncher<String> galleryLauncher;
-
     Boolean isImageSelected = false;
 
     @Override
@@ -59,8 +59,10 @@ public class AddPostFragment extends Fragment {
 
         binding = FragmentAddPostBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        binding.addPostProgressbar.setVisibility(View.GONE);
 
         binding.addPostUploadBtn.setOnClickListener(uploadBtnView -> {
+            binding.addPostProgressbar.setVisibility(View.VISIBLE);
             String restaurant = binding.addPostRestaurantEt.getText().toString();
             String meal = binding.addPostMealEt.getText().toString();
             String rate = binding.addPostRateEt.getText().toString();
@@ -77,12 +79,12 @@ public class AddPostFragment extends Fragment {
                         post.setImageUrl(url);
                     }
                     Model.instance().addPost(post, (unused) -> {
-                        Navigation.findNavController(uploadBtnView).popBackStack();
+                        useRunnable(uploadBtnView);
                     });
                 });
             } else {
                 Model.instance().addPost(post, (unused) -> {
-                    Navigation.findNavController(uploadBtnView).popBackStack();
+                    useRunnable(uploadBtnView);
                 });
             }
         });
@@ -100,5 +102,16 @@ public class AddPostFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void useRunnable(View uploadBtnView) {
+        new android.os.Handler(Looper.getMainLooper()).postDelayed(
+                new Runnable() {
+                    public void run() {
+                        Navigation.findNavController(uploadBtnView).popBackStack();
+                        binding.addPostProgressbar.setVisibility(View.GONE);
+                    }
+                },
+                1200);
     }
 }
