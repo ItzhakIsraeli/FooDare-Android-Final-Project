@@ -4,6 +4,13 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
+import android.os.SystemClock;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -12,21 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.os.SystemClock;
-import android.util.Log;
-import android.view.Display;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.example.foodare.databinding.FragmentEditPostBinding;
-import com.example.foodare.databinding.FragmentEditProfileBinding;
 import com.example.foodare.model.Model;
 import com.example.foodare.model.Post;
 import com.squareup.picasso.Picasso;
@@ -36,7 +29,6 @@ public class EditPostFragment extends Fragment {
     FragmentEditPostBinding binding;
     ActivityResultLauncher<Void> cameraLauncher;
     ActivityResultLauncher<String> galleryLauncher;
-
     Boolean isImageSelected = false;
 
     @Override
@@ -71,7 +63,7 @@ public class EditPostFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentEditPostBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-
+        binding.editPostProgressbar.setVisibility(View.GONE);
         String postId = EditPostFragmentArgs.fromBundle(getArguments()).getPostId();
         String restaurant = EditPostFragmentArgs.fromBundle(getArguments()).getRestaurant();
         String meal = EditPostFragmentArgs.fromBundle(getArguments()).getMeal();
@@ -97,6 +89,7 @@ public class EditPostFragment extends Fragment {
         }
 
         binding.editPostSaveBtn.setOnClickListener(uploadBtnView -> {
+            binding.editPostProgressbar.setVisibility(View.VISIBLE);
             String newRestaurant = restaurantEt.getText().toString();
             String newMeal = mealEt.getText().toString();
             String newRate = rateEt.getText().toString();
@@ -113,12 +106,12 @@ public class EditPostFragment extends Fragment {
                         post.setImageUrl(url);
                     }
                     Model.instance().addPost(post, (unused) -> {
-                        Navigation.findNavController(uploadBtnView).popBackStack();
+                        useRunnable(uploadBtnView);
                     });
                 });
             } else {
                 Model.instance().addPost(post, (unused) -> {
-                    Navigation.findNavController(uploadBtnView).popBackStack();
+                    useRunnable(uploadBtnView);
                 });
             }
         });
@@ -145,5 +138,16 @@ public class EditPostFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void useRunnable(View uploadBtnView) {
+        new android.os.Handler(Looper.getMainLooper()).postDelayed(
+                new Runnable() {
+                    public void run() {
+                        Navigation.findNavController(uploadBtnView).popBackStack();
+                        binding.editPostProgressbar.setVisibility(View.GONE);
+                    }
+                },
+                1200);
     }
 }

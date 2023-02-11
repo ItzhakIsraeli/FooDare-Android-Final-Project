@@ -5,13 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Looper;
+import android.os.SystemClock;
+import android.view.View;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
 import com.example.foodare.databinding.ActivityRegisterBinding;
 import com.example.foodare.model.Model;
@@ -31,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.userRegisterProgressbar.setVisibility(View.GONE);
 
         cameraLauncher = registerForActivityResult(new ActivityResultContracts.TakePicturePreview(),
                 new ActivityResultCallback<Bitmap>() {
@@ -54,6 +56,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         binding.userRegisterBtn.setOnClickListener(view -> {
+            binding.userRegisterProgressbar.setVisibility(View.VISIBLE);
+
             String name = binding.userRegisterNameEt.getText().toString();
             String age = binding.userRegisterAgeEt.getText().toString();
             String phone = binding.userRegisterPhoneEt.getText().toString();
@@ -63,27 +67,24 @@ public class RegisterActivity extends AppCompatActivity {
             UserModel user = new UserModel(mail, name, age, phone, "");
 
             if (isImageSelected) {
+                String id = Long.toString(SystemClock.elapsedRealtime());
                 binding.userRegisterAvatar.setDrawingCacheEnabled(true);
                 binding.userRegisterAvatar.buildDrawingCache();
                 Bitmap bitmap = ((BitmapDrawable) binding.userRegisterAvatar.getDrawable()).getBitmap();
-                Model.instance().uploadImage(mail, bitmap, url -> {
+                Model.instance().uploadImage(id, bitmap, url -> {
                     if (url != null) {
                         user.setImageUrl(url);
                     }
                     Model.instance().addUser(user, (unused) -> {
                         Model.instance().addFirebaseUser(user.getMail(),password, (callback) -> {
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                            useRunnable(view);
                         });
                     });
                 });
             } else {
                 Model.instance().addUser(user, (unused) -> {
                     Model.instance().addFirebaseUser(user.getMail(), password, (callback) -> {
-                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        useRunnable(view);
                     });
                 });
             };
@@ -96,6 +97,18 @@ public class RegisterActivity extends AppCompatActivity {
         binding.userRegisterGalleryBtn.setOnClickListener(galleryBtnView -> {
             galleryLauncher.launch("image/*");
         });
+    }
 
+    public void useRunnable(View uploadBtnView) {
+        new android.os.Handler(Looper.getMainLooper()).postDelayed(
+                new Runnable() {
+                    public void run() {
+                        Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                        binding.userRegisterProgressbar.setVisibility(View.GONE);
+                    }
+                },
+                1200);
     }
 }

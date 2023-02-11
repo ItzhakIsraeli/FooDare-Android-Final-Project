@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,6 +62,7 @@ public class EditProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentEditProfileBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        binding.editProfileProgressbar.setVisibility(View.GONE);
 
         String name = EditProfileFragmentArgs.fromBundle(getArguments()).getName();
         String age = EditProfileFragmentArgs.fromBundle(getArguments()).getAge();
@@ -80,6 +82,7 @@ public class EditProfileFragment extends Fragment {
 
         binding.editProfileSaveBtn.setOnClickListener(saveBtnView -> {
 
+            binding.editProfileProgressbar.setVisibility(View.VISIBLE);
             String newName = binding.editProfileNameEt.getText().toString();
             String newAge = binding.editProfileAgeEt.getText().toString();
             String newPhone = binding.editProfilePhoneEt.getText().toString();
@@ -95,12 +98,12 @@ public class EditProfileFragment extends Fragment {
                         userModel.setImageUrl(url);
                     }
                     Model.instance().addUser(userModel, (unused) -> {
-                        Navigation.findNavController(saveBtnView).popBackStack();
+                        useRunnable(saveBtnView);
                     });
                 });
             } else {
                 Model.instance().addUser(userModel, (unused) -> {
-                    Navigation.findNavController(saveBtnView).popBackStack();
+                    useRunnable(saveBtnView);
                 });
             }
         });
@@ -118,5 +121,16 @@ public class EditProfileFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void useRunnable(View saveBtnView) {
+        new android.os.Handler(Looper.getMainLooper()).postDelayed(
+                new Runnable() {
+                    public void run() {
+                        Navigation.findNavController(saveBtnView).popBackStack();
+                        binding.editProfileProgressbar.setVisibility(View.GONE);
+                    }
+                },
+                1200);
     }
 }
