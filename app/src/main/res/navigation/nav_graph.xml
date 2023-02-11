@@ -62,7 +62,7 @@
             android:name="phone"
             app:argType="string" />
         <argument
-            android:name="mail"
+            android:name="imageUrl"
             app:argType="string" />
     </fragment>
     <action
@@ -100,6 +100,14 @@
         <argument
             android:name="imageUrl"
             app:argType="string" />
+        <argument
+            android:name="postId"
+            app:argType="string" />
     </fragment>
-    <action android:id="@+id/action_global_postDetailsFragment" app:destination="@id/postDetailsFragment"/>
+    <action android:id="@+id/action_global_postDetailsFragment" app:destination="@id/postDetailsFragment" />
+    <fragment
+        android:id="@+id/dailyMealFragment"
+        android:name="com.example.foodare.DailyMealFragment"
+        android:label="@string/daily_meal"
+        tools:layout="@layout/fragment_daily_meal" /><action android:id="@+id/action_global_dailyMealFragment" app:destination="@id/dailyMealFragment"/>
 </navigation>

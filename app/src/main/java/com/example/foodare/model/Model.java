@@ -9,7 +9,6 @@ import androidx.core.os.HandlerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -49,6 +48,11 @@ public class Model {
         return postsList;
     }
 
+    public void deletePost(String postId){
+        localDb.PostDao().deletePostById(postId);
+        firebaseModel.deletePost(postId);
+    }
+
     public void refreshAllPosts() {
         EventPostsListLoadingState.setValue(LoadingState.LOADING);
         // get local last update
@@ -84,8 +88,41 @@ public class Model {
         });
     }
 
+    public void loginUser(String mail, String password, Listener<Void> listener) {
+        firebaseModel.loginUser(mail, password, (Void) -> {
+            listener.onComplete(null);
+        });
+    }
+
+    public void addFirebaseUser(String mail, String password, Listener<Void> listener) {
+        firebaseModel.addFirebaseUser(mail, password, (Void) -> {
+            listener.onComplete(null);
+        });
+    }
+
+    public String getCurrentUserMail(){
+        return firebaseModel.getCurrentUserMail();
+    }
+
+    public void logoutUser() {
+        firebaseModel.logoutUser();
+    }
+
+    public boolean isUserConnected() {
+        return firebaseModel.isUserConnected();
+    }
+
+    public void addUser(UserModel user, Listener<Void> listener) {
+        firebaseModel.addUser(user, (Void) -> {
+            listener.onComplete(null);
+        });
+    }
+
+    public void getUserByMail(String mail, Listener<UserModel> listener) {
+        firebaseModel.getUserByMail(mail, listener);
+    }
+
     public void uploadImage(String name, Bitmap bitmap, Listener<String> listener) {
         firebaseModel.uploadImage(name, bitmap, listener);
     }
-
 }

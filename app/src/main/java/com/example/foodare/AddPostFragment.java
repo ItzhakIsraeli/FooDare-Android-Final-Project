@@ -66,7 +66,7 @@ public class AddPostFragment extends Fragment {
             String rate = binding.addPostRateEt.getText().toString();
             String description = binding.addPostDescriptionEt.getText().toString();
             String id = Long.toString(SystemClock.elapsedRealtime());
-            Post post = new Post(id, "MorAndIzhak", restaurant, meal, rate, description, "");
+            Post post = new Post(id, Model.instance().getCurrentUserMail(), restaurant, meal, rate, description, "");
 
             if (isImageSelected) {
                 binding.addPostAvatarImage.setDrawingCacheEnabled(true);

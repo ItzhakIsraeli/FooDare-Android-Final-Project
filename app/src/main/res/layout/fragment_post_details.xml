@@ -14,7 +14,6 @@
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:minHeight="48dp"
-        android:text="The Burger was great! but the bread was too dry. We will definitely come back again !"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/post_details_back_btn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,12 +40,11 @@
         android:id="@+id/post_details_image"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/post_details_restaurant_title_tv"
@@ -64,9 +62,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textSize="18sp"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Cheeseburger"
         app:layout_constraintBaseline_toBaselineOf="@+id/post_details_meal_title_tv"
         app:layout_constraintStart_toStartOf="@+id/post_details_restaurant_tv"
         tools:ignore="MissingConstraints" />
@@ -78,7 +76,7 @@
         android:ems="10"
         android:inputType="phone"
         android:minHeight="48dp"
-        android:text="7.5"
+        android:textSize="18sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/post_details_rate_title_tv"
         app:layout_constraintStart_toStartOf="@+id/post_details_meal_tv"
         tools:ignore="MissingConstraints" />
@@ -98,10 +96,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
+        android:textSize="18sp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Prozdor"
         app:layout_constraintBaseline_toBaselineOf="@+id/post_details_restaurant_title_tv"
         app:layout_constraintStart_toEndOf="@+id/post_details_restaurant_title_tv"
         tools:ignore="MissingConstraints" />
@@ -111,6 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
+
         android:text="Meal:"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/post_details_restaurant_title_tv"
@@ -126,5 +125,18 @@
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/post_details_rate_title_tv"
         app:layout_constraintTop_toBottomOf="@+id/post_details_rate_title_tv" />
+
+    <TextView
+        android:id="@+id/post_details_username_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borderless_orange_button"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/post_details_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

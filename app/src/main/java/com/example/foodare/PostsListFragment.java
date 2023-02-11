@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -18,6 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodare.databinding.PostsFragmentListBinding;
 import com.example.foodare.model.Model;
 import com.example.foodare.model.Post;
+import com.example.foodare.model.UserModel;
+
+import java.util.List;
 
 public class PostsListFragment extends Fragment {
     PostRecyclerAdapter adapter;
@@ -33,26 +37,32 @@ public class PostsListFragment extends Fragment {
         view = binding.getRoot();
         adapter = new PostRecyclerAdapter(getLayoutInflater(), viewModel.getData().getValue(), R.layout.post_list_row);
         RecyclerView list = binding.postsFragList;
-        HandleLayoutManager(adapter, list, binding.postsSwipeRefresh);
+        HandleLayoutManager(adapter, list, binding.postsSwipeRefresh, view, viewModel.getData());
+
+        binding.dailyMealBtn.setOnClickListener(btn -> {
+            NavDirections action = DailyMealFragmentDirections.actionGlobalDailyMealFragment();
+            Navigation.findNavController(view).navigate((NavDirections) action);
+        });
 
         return view;
     }
 
-    public void HandleLayoutManager(PostRecyclerAdapter adapterHandler, RecyclerView listHandler, androidx.swiperefreshlayout.widget.SwipeRefreshLayout postsSwipeRefreshHandler) {
+    public void HandleLayoutManager(PostRecyclerAdapter adapterHandler, RecyclerView listHandler, androidx.swiperefreshlayout.widget.SwipeRefreshLayout postsSwipeRefreshHandler,
+                                    View viewHandler, LiveData<List<Post>> data) {
         listHandler.setHasFixedSize(true);
         listHandler.setLayoutManager(new LinearLayoutManager(getContext()));
         listHandler.setAdapter(adapterHandler);
 
         adapterHandler.setOnItemClickListener(position -> {
             Log.d("TAG", "Row was clicked " + position);
-            Post post = viewModel.getData().getValue().get(position);
+            Post post = data.getValue().get(position);
             NavDirections action =
                     PostDetailsFragmentDirections.actionGlobalPostDetailsFragment(post.restaurant,
                             post.meal, post.rate, post.description, post.username, post.imageUrl);
-            Navigation.findNavController(view).navigate((NavDirections) action);
+            Navigation.findNavController(viewHandler).navigate((NavDirections) action);
         });
 
-        viewModel.getData().observe(getViewLifecycleOwner(), adapterHandler::setData);
+        data.observe(getViewLifecycleOwner(), adapterHandler::setData);
 
         Model.instance().EventPostsListLoadingState.observe(getViewLifecycleOwner(), status -> {
             postsSwipeRefreshHandler.setRefreshing(status == Model.LoadingState.LOADING);

@@ -5,12 +5,12 @@
     android:layout_height="wrap_content"
     android:background="#FFFFFF">
 
-    <Button
+    <ImageButton
         android:id="@+id/post_list_row_edit_btn"
         android:layout_width="50dp"
-        android:layout_height="30dp"
+        android:layout_height="match_parent"
         android:layout_marginEnd="16dp"
-        android:drawableBottom="@drawable/ic_edit_post_button"
+        android:src="@drawable/ic_edit_post_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -35,7 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/postlistrow_avatar_img"
@@ -45,7 +44,6 @@
         android:id="@+id/post_list_row_restaurant_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/post_list_row_meal_tv"
@@ -57,7 +55,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
-        android:text="7/10"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/post_list_row_username_tv" />
@@ -66,7 +63,6 @@
         android:id="@+id/post_list_row_username_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Itzhak hai Israeli"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/post_list_row_rate_tv"
         app:layout_constraintStart_toStartOf="@+id/post_list_row_restaurant_tv"

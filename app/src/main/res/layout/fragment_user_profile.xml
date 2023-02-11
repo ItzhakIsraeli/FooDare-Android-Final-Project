@@ -10,7 +10,6 @@
         android:id="@+id/user_profile_mail_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Izik1747@gmail.com"
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/user_profile_mail_title_tv"
         app:layout_constraintStart_toStartOf="@+id/user_profile_phone_tv" />
@@ -19,7 +18,6 @@
         android:id="@+id/user_profile_phone_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0545242473"
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/user_profile_phone_title_tv"
         app:layout_constraintStart_toStartOf="@+id/user_profile_age_tv" />
@@ -28,7 +26,6 @@
         android:id="@+id/user_profile_age_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="24"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/user_profile_age_title_tv"
         app:layout_constraintStart_toStartOf="@+id/user_profile_name_tv" />
@@ -106,7 +103,6 @@
         android:id="@+id/user_profile_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Itzhak Isreali"
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/user_profile_name_title_tv"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,7 +1,11 @@
 package com.example.foodare.model;
 
+import static com.example.foodare.MyApplication.getMyContext;
+
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -10,6 +14,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
@@ -19,20 +26,28 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class FirebaseModel {
     FirebaseFirestore db;
     FirebaseStorage storage;
+    FirebaseAuth mAuth;
 
     FirebaseModel() {
         db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(false)
                 .build();
         db.setFirestoreSettings(settings);
         storage = FirebaseStorage.getInstance();
+    }
+
+    public void deletePost(String postId) {
+        db.collection(Post.COLLECTION).document(postId).delete();
     }
 
     public void getAllPostsSince(Long since, Model.Listener<List<Post>> callback) {
@@ -64,6 +79,65 @@ public class FirebaseModel {
                 });
     }
 
+    public void getUserByMail(String userMail, Model.Listener<UserModel> callback) {
+        db.collection(UserModel.COLLECTION).document(userMail).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                UserModel user = null;
+                if (task.isSuccessful() && task.getResult() != null && task.getResult().getData() != null) {
+                    Map<String, Object> jsonData = task.getResult().getData();
+                    user = UserModel.fromJson(jsonData);
+                    Log.d("JSON", UserModel.fromJson(jsonData).mail);
+                }
+                callback.onComplete(user);
+            }
+        });
+    }
+
+    public String getCurrentUserMail() {
+        return mAuth.getCurrentUser().getEmail();
+    }
+
+    public void addUser(UserModel user, Model.Listener<Void> listener) {
+        db.collection(UserModel.COLLECTION).document(user.getMail()).set(user.toJson())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        listener.onComplete(null);
+                    }
+                });
+    }
+
+    public void logoutUser() {
+        mAuth.signOut();
+    }
+
+    public void addFirebaseUser(String mail, String password, Model.Listener<Void> listener) {
+        mAuth.createUserWithEmailAndPassword(mail, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getMyContext(),
+                                            "Registration successful!",
+                                            Toast.LENGTH_LONG)
+                                    .show();
+                            listener.onComplete(null);
+                            FirebaseUser user = mAuth.getCurrentUser();
+                        } else {
+                            Toast.makeText(getMyContext(),
+                                            "Registration failed!",
+                                            Toast.LENGTH_LONG)
+                                    .show();
+                        }
+                    }
+                });
+    }
+
+    public boolean isUserConnected() {
+        return mAuth.getCurrentUser() != null;
+    }
+
     void uploadImage(String name, Bitmap bitmap, Model.Listener<String> listener) {
         StorageReference storageRef = storage.getReference();
         StorageReference imagesRef = storageRef.child("images/" + name + ".jpg");
@@ -88,8 +162,28 @@ public class FirebaseModel {
                 });
             }
         });
+    }
 
+    public void loginUser(String mail, String password, Model.Listener<Void> listener) {
+        mAuth.signInWithEmailAndPassword(mail, password)
+                .addOnCompleteListener(
+                        new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(
+                                    @NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    listener.onComplete(null);
+                                    Toast.makeText(getMyContext(),
+                                                    "Login successful!!",
+                                                    Toast.LENGTH_LONG)
+                                            .show();
+                                } else {
+                                    Toast.makeText(getMyContext(),
+                                                    "Login failed!!",
+                                                    Toast.LENGTH_LONG)
+                                            .show();
+                                }
+                            }
+                        });
     }
 }
-
-

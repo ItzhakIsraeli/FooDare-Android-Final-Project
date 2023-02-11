@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,12 +25,10 @@ class PostViewHolder extends RecyclerView.ViewHolder {
     TextView restaurantName;
     TextView mealName;
     TextView mealRate;
-    TextView mealDescription;
     List<Post> data;
-    Button editBtn;
+    ImageButton editBtn;
     ImageView mealImage;
     String url = "";
-
 
     public PostViewHolder(@NonNull View itemView, PostRecyclerAdapter.OnItemClickListener listener, List<Post> data) {
         super(itemView);
@@ -38,16 +37,15 @@ class PostViewHolder extends RecyclerView.ViewHolder {
         restaurantName = itemView.findViewById(R.id.post_list_row_restaurant_tv);
         mealName = itemView.findViewById(R.id.post_list_row_meal_tv);
         mealRate = itemView.findViewById(R.id.post_list_row_rate_tv);
-        //TODO: fix this to description
-        mealDescription = itemView.findViewById(R.id.post_list_row_rate_tv);
         editBtn = itemView.findViewById(R.id.post_list_row_edit_btn);
         mealImage = itemView.findViewById(R.id.postlistrow_avatar_img);
 
         if (editBtn != null) {
             editBtn.setOnClickListener(view -> {
+                Post clickedPost = data.get(getAdapterPosition());
                 MyPostListFragmentDirections.ActionMyPostListFragmentToEditPostFragment action =
-                        MyPostListFragmentDirections.actionMyPostListFragmentToEditPostFragment(restaurantName.getText().toString(),
-                                mealName.getText().toString(), mealRate.getText().toString(), mealDescription.getText().toString(), url);
+                        MyPostListFragmentDirections.actionMyPostListFragmentToEditPostFragment(clickedPost.getRestaurant(),
+                                clickedPost.getMeal(), clickedPost.getRate(), clickedPost.getDescription(), clickedPost.getImageUrl(), clickedPost.getId());
                 Navigation.findNavController(view).navigate((NavDirections) action);
             });
         }
@@ -110,8 +108,8 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<PostViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-        Post st = data.get(position);
-        holder.bind(st, position);
+        Post post = data.get(position);
+        holder.bind(post, position);
     }
 
     @Override

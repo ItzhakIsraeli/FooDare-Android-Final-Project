@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DailyMealFragment">
+
+    <Button
+        android:id="@+id/daily_meal_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/orange_button"
+        android:text="BACK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/daily_meal_image"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/daily_meal_name_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:text="Meal:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/daily_meal_image" />
+
+    <TextView
+        android:id="@+id/daily_meal_category_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="20sp"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/daily_meal_category_title_tv"
+        app:layout_constraintStart_toStartOf="@+id/daily_meal_name_tv"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/daily_meal_area_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="20sp"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/daily_meal_area_title_tv"
+        app:layout_constraintStart_toStartOf="@+id/daily_meal_category_tv"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/daily_meal_area_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Area:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/daily_meal_category_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/daily_meal_category_title_tv" />
+
+    <TextView
+        android:id="@+id/daily_meal_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/daily_meal_name_title_tv"
+        app:layout_constraintStart_toEndOf="@+id/daily_meal_name_title_tv"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/daily_meal_category_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Category:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/daily_meal_name_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/daily_meal_name_title_tv"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/daily_meal_instructions_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Tags:"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/daily_meal_area_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/daily_meal_area_title_tv" />
+
+    <TextView
+        android:id="@+id/daily_meal_tags_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:minHeight="48dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/daily_meal_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/daily_meal_instructions_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/daily_meal_instructions_title_tv"
+        app:layout_constraintVertical_bias="0.477"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

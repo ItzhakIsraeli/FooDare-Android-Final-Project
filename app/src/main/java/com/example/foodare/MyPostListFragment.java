@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodare.databinding.MyPostsFragmentListBinding;
+import com.example.foodare.model.Model;
+import com.example.foodare.model.UserModel;
 
 public class MyPostListFragment extends PostsListFragment {
 
@@ -22,9 +24,9 @@ public class MyPostListFragment extends PostsListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = MyPostsFragmentListBinding.inflate(inflater, container, false);
-        adapter = new PostRecyclerAdapter(getLayoutInflater(), viewModel.getDataByUser("1234").getValue(), R.layout.my_post_list_row);
+        adapter = new PostRecyclerAdapter(getLayoutInflater(), viewModel.getDataByUser(Model.instance().getCurrentUserMail()).getValue(), R.layout.my_post_list_row);
         RecyclerView list = binding.myPostsFragList;
-        HandleLayoutManager(adapter, list, binding.postsSwipeRefresh);
+        HandleLayoutManager(adapter, list, binding.postsSwipeRefresh, binding.getRoot(), viewModel.getDataByUser(Model.instance().getCurrentUserMail()));
         return binding.getRoot();
     }
 
