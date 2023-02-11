@@ -2,8 +2,13 @@ package com.example.foodare;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -11,6 +16,7 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,18 +25,53 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.foodare.databinding.FragmentEditPostBinding;
+import com.example.foodare.databinding.FragmentEditProfileBinding;
 import com.example.foodare.model.Model;
 import com.example.foodare.model.Post;
 import com.squareup.picasso.Picasso;
 
 public class EditPostFragment extends Fragment {
     Post post;
+    FragmentEditPostBinding binding;
+    ActivityResultLauncher<Void> cameraLauncher;
+    ActivityResultLauncher<String> galleryLauncher;
+
+    Boolean isImageSelected = false;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        cameraLauncher = registerForActivityResult(new ActivityResultContracts.TakePicturePreview(),
+                new ActivityResultCallback<Bitmap>() {
+                    @Override
+                    public void onActivityResult(Bitmap result) {
+                        if (result != null) {
+                            binding.editPostImage.setImageBitmap(result);
+                            isImageSelected = true;
+                        }
+                    }
+                });
+
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri result) {
+                if (result != null) {
+                    binding.editPostImage.setImageURI(result);
+                    isImageSelected = true;
+                }
+            }
+        });
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_edit_post, container, false);
+        binding = FragmentEditPostBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+
         String postId = EditPostFragmentArgs.fromBundle(getArguments()).getPostId();
         String restaurant = EditPostFragmentArgs.fromBundle(getArguments()).getRestaurant();
         String meal = EditPostFragmentArgs.fromBundle(getArguments()).getMeal();
@@ -38,16 +79,16 @@ public class EditPostFragment extends Fragment {
         String description = EditPostFragmentArgs.fromBundle(getArguments()).getDescription();
         String imageUrl = EditPostFragmentArgs.fromBundle(getArguments()).getImageUrl();
 
-        EditText restaurantEt = view.findViewById(R.id.edit_post_restaurant_et);
-        EditText mealEt = view.findViewById(R.id.edit_post_meal_et);
-        EditText rateEt = view.findViewById(R.id.edit_post_rate_et);
-        EditText descriptionEt = view.findViewById(R.id.edit_post_description_et);
-        ImageView imageUrlIV = view.findViewById(R.id.edit_post_image);
+        EditText restaurantEt = binding.editPostRestaurantEt;
+        EditText mealEt = binding.editPostMealEt;
+        EditText rateEt = binding.editPostRateEt;
+        EditText descriptionEt = binding.editPostDescriptionEt;
+        ImageView imageUrlIV = binding.editPostImage;
 
-        restaurantEt.setText(restaurant);
-        mealEt.setText(meal);
-        rateEt.setText(rate);
-        descriptionEt.setText(description);
+        binding.editPostRestaurantEt.setText(restaurant);
+        binding.editPostMealEt.setText(meal);
+        binding.editPostRateEt.setText(rate);
+        binding.editPostDescriptionEt.setText(description);
 
         if (!imageUrl.equals("")) {
             Picasso.get().load(imageUrl).placeholder(R.drawable.hamburger).into(imageUrlIV);
@@ -55,42 +96,54 @@ public class EditPostFragment extends Fragment {
             imageUrlIV.setImageResource(R.drawable.hamburger);
         }
 
-        Button cancelBtn = view.findViewById(R.id.edit_post_cancel_btn);
-        Button saveBtn = view.findViewById(R.id.edit_post_save_btn);
-        ImageButton deleteBtn = view.findViewById(R.id.edit_post_delete_btn);
-
-        cancelBtn.setOnClickListener((buttonView) -> {
-            Navigation.findNavController(buttonView).popBackStack();
-        });
-
-        saveBtn.setOnClickListener(uploadBtnView -> {
+        binding.editPostSaveBtn.setOnClickListener(uploadBtnView -> {
             String newRestaurant = restaurantEt.getText().toString();
             String newMeal = mealEt.getText().toString();
             String newRate = rateEt.getText().toString();
             String newDescription = descriptionEt.getText().toString();
             post = new Post(postId, Model.instance().getCurrentUserMail(), newRestaurant, newMeal, newRate, newDescription, imageUrl);
+            String id = Long.toString(SystemClock.elapsedRealtime());
 
-            Model.instance().addPost(post, (unused) -> {
-                Navigation.findNavController(uploadBtnView).popBackStack();
-            });
-
+            if (isImageSelected) {
+                imageUrlIV.setDrawingCacheEnabled(true);
+                imageUrlIV.buildDrawingCache();
+                Bitmap bitmap = ((BitmapDrawable) imageUrlIV.getDrawable()).getBitmap();
+                Model.instance().uploadImage(id, bitmap, url -> {
+                    if (url != null) {
+                        post.setImageUrl(url);
+                    }
+                    Model.instance().addPost(post, (unused) -> {
+                        Navigation.findNavController(uploadBtnView).popBackStack();
+                    });
+                });
+            } else {
+                Model.instance().addPost(post, (unused) -> {
+                    Navigation.findNavController(uploadBtnView).popBackStack();
+                });
+            }
         });
 
-        deleteBtn.setOnClickListener((buttonView) -> {
+        binding.editPostDeleteBtn.setOnClickListener((buttonView) -> {
             DeleteDialogFragment deleteDialogFragment = new DeleteDialogFragment();
             Bundle args = new Bundle();
-
             args.putString("postId", postId);
-            args.putString("mail", postId);
-            args.putString("restaurant", postId);
-            args.putString("meal", postId);
-            args.putString("rate", postId);
-            args.putString("description", postId);
-            args.putString("imageUrl", postId);
-
             deleteDialogFragment.setArguments(args);
+            deleteDialogFragment.addView(buttonView);
             deleteDialogFragment.show(getChildFragmentManager(), "DELETE_POST");
         });
+
+        binding.editPostCameraBtn.setOnClickListener(cameraBtnView -> {
+            cameraLauncher.launch(null);
+        });
+
+        binding.editPostGalleryBtn.setOnClickListener(galleryBtnView -> {
+            galleryLauncher.launch("image/*");
+        });
+
+        binding.editPostCancelBtn.setOnClickListener((buttonView) -> {
+            Navigation.findNavController(buttonView).popBackStack();
+        });
+
         return view;
     }
 }

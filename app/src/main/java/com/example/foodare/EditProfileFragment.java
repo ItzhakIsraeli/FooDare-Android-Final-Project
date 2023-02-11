@@ -1,8 +1,10 @@
 package com.example.foodare;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,15 +79,30 @@ public class EditProfileFragment extends Fragment {
         }
 
         binding.editProfileSaveBtn.setOnClickListener(saveBtnView -> {
+
             String newName = binding.editProfileNameEt.getText().toString();
             String newAge = binding.editProfileAgeEt.getText().toString();
             String newPhone = binding.editProfilePhoneEt.getText().toString();
             UserModel userModel = new UserModel(Model.instance().getCurrentUserMail(), newName, newAge, newPhone, imageUrl);
 
-            Model.instance().addUser(userModel, (unused) -> {
-                Navigation.findNavController(saveBtnView).popBackStack();
-            });
-
+            if (isImageSelected) {
+                String id = Long.toString(SystemClock.elapsedRealtime());
+                image.setDrawingCacheEnabled(true);
+                image.buildDrawingCache();
+                Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
+                Model.instance().uploadImage(id, bitmap, url -> {
+                    if (url != null) {
+                        userModel.setImageUrl(url);
+                    }
+                    Model.instance().addUser(userModel, (unused) -> {
+                        Navigation.findNavController(saveBtnView).popBackStack();
+                    });
+                });
+            } else {
+                Model.instance().addUser(userModel, (unused) -> {
+                    Navigation.findNavController(saveBtnView).popBackStack();
+                });
+            }
         });
 
         binding.editUserCameraBtn.setOnClickListener(cameraBtnView -> {
