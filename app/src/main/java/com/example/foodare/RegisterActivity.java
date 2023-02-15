@@ -80,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                             useRunnable(view);
                         });
                     });
+                    binding.userRegisterProgressbar.setVisibility(View.GONE);
                 });
             } else {
                 Model.instance().addUser(user, (unused) -> {
@@ -87,6 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
                         useRunnable(view);
                     });
                 });
+                binding.userRegisterProgressbar.setVisibility(View.GONE);
             };
         });
 

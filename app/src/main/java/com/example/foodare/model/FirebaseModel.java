@@ -18,6 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -47,7 +48,8 @@ public class FirebaseModel {
     }
 
     public void deletePost(String postId) {
-        db.collection(Post.COLLECTION).document(postId).delete();
+        db.collection(Post.COLLECTION).document(postId).update("lastUpdated", FieldValue.serverTimestamp());
+        db.collection(Post.COLLECTION).document(postId).update("isDeleted", true);
     }
 
     public void getAllPostsSince(Long since, Model.Listener<List<Post>> callback) {

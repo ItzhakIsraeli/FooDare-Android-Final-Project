@@ -10,6 +10,9 @@ public interface PostDao {
     @Query("select * from Post")
     LiveData<List<Post>> getAll();
 
+    @Query("select * from Post where isDeleted = :isDeleted")
+    LiveData<List<Post>> getAllPosts(Boolean isDeleted);
+
     @Query("select * from Post where id= :userId")
     List<Post> getPostsByUserId(String userId);
 

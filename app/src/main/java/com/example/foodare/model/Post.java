@@ -30,13 +30,15 @@ public class Post {
     public String description = "";
     public String imageUrl = "";
     public Long lastUpdated;
+    public Boolean isDeleted = false;
 
     public Post() {
 
     }
 
-    public Post(@androidx.annotation.NonNull String id, String username, String restaurant, String meal, String rate, String description, String imageUrl) {
+    public Post(@androidx.annotation.NonNull String id, Boolean isDeleted, String username, String restaurant, String meal, String rate, String description, String imageUrl) {
         this.id = id;
+        this.isDeleted = isDeleted;
         this.username = username;
         this.restaurant = restaurant;
         this.meal = meal;
@@ -53,6 +55,7 @@ public class Post {
     static final String RATE = "rate";
     static final String DESCRIPTION = "description";
     static final String IMAGE_URL = "imageUrl";
+    static final String IS_DELETED = "isDeleted";
 
     static final String LAST_UPDATED = "lastUpdated";
     static final String LOCAL_LAST_UPDATED = "posts_local_last_update";
@@ -77,8 +80,9 @@ public class Post {
         String rate = (String) json.get(RATE);
         String description = (String) json.get(DESCRIPTION);
         String imageUrl = (String) json.get(IMAGE_URL);
+        Boolean isDeleted = (Boolean) json.get(IS_DELETED);
 
-        Post post = new Post(id, username, restaurant, meal, rate, description, imageUrl);
+        Post post = new Post(id, isDeleted, username, restaurant, meal, rate, description, imageUrl);
 
         try {
             Timestamp time = (Timestamp) json.get(LAST_UPDATED);
@@ -92,6 +96,7 @@ public class Post {
     public Map<String, Object> toJson() {
         Map<String, Object> json = new HashMap<>();
         json.put(ID, getId());
+        json.put(IS_DELETED, getIsDeleted());
         json.put(USERNAME, getUsername());
         json.put(RESTAURANT, getRestaurant());
         json.put(MEAL, getMeal());
@@ -109,6 +114,14 @@ public class Post {
 
     public void setId(@androidx.annotation.NonNull String id) {
         this.id = id;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 
     public String getUsername() {
