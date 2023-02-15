@@ -94,7 +94,7 @@ public class EditPostFragment extends Fragment {
             String newMeal = mealEt.getText().toString();
             String newRate = rateEt.getText().toString();
             String newDescription = descriptionEt.getText().toString();
-            post = new Post(postId, Model.instance().getCurrentUserMail(), newRestaurant, newMeal, newRate, newDescription, imageUrl);
+            post = new Post(postId, false, Model.instance().getCurrentUserMail(), newRestaurant, newMeal, newRate, newDescription, imageUrl);
             String id = Long.toString(SystemClock.elapsedRealtime());
 
             if (isImageSelected) {

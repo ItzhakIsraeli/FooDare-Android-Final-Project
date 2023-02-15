@@ -42,14 +42,14 @@ public class Model {
 
     public LiveData<List<Post>> getAllPosts() {
         if (postsList == null) {
-            postsList = localDb.PostDao().getAll();
+            postsList = localDb.PostDao().getAllPosts(false);
             refreshAllPosts();
         }
         return postsList;
     }
 
     public void deletePost(String postId){
-        localDb.PostDao().deletePostById(postId);
+//        localDb.PostDao().deletePostById(postId);
         firebaseModel.deletePost(postId);
     }
 
