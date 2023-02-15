@@ -49,7 +49,7 @@ public class Model {
     }
 
     public void deletePost(String postId){
-//        localDb.PostDao().deletePostById(postId);
+        localDb.PostDao().deletePostById(postId);
         firebaseModel.deletePost(postId);
     }
 

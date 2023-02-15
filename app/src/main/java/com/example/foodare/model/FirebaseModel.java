@@ -48,7 +48,6 @@ public class FirebaseModel {
     }
 
     public void deletePost(String postId) {
-//        db.collection(Post.COLLECTION).document(postId).delete();
         db.collection(Post.COLLECTION).document(postId).update("lastUpdated", FieldValue.serverTimestamp());
         db.collection(Post.COLLECTION).document(postId).update("isDeleted", true);
     }

@@ -112,6 +112,6 @@ public class AddPostFragment extends Fragment {
                         binding.addPostProgressbar.setVisibility(View.GONE);
                     }
                 },
-                1200);
+                600);
     }
 }

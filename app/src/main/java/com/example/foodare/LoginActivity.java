@@ -34,18 +34,24 @@ public class LoginActivity extends AppCompatActivity {
 
             String email = binding.loginActivityEmailEt.getText().toString();
             String password = binding.loginActivityPasswordEt.getText().toString();
-            Model.instance().loginUser(email, password, (callback) -> {
-                new android.os.Handler(Looper.getMainLooper()).postDelayed(
-                        new Runnable() {
-                            public void run() {
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                                binding.loginActivityProgressbar.setVisibility(View.GONE);
-                            }
-                        },
-                        1200);
-            });
+
+            if (!email.equals("") && !password.equals("")) {
+                Model.instance().loginUser(email, password, (callback) -> {
+                    new android.os.Handler(Looper.getMainLooper()).postDelayed(
+                            new Runnable() {
+                                public void run() {
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                    binding.loginActivityProgressbar.setVisibility(View.GONE);
+                                }
+                            },
+                            1200);
+                });
+                binding.loginActivityProgressbar.setVisibility(View.GONE);
+            } else {
+                binding.loginActivityProgressbar.setVisibility(View.GONE);
+            }
         });
 
     }
